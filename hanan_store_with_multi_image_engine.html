@@ -1,0 +1,2477 @@
+<!DOCTYPE html>
+<html lang="en" class="dark scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT93U0K2Psm5NQqz1-tSnrt3zf8gTAzn4Y0LLxKoMQAMw&s=10" type="image/x-icon">
+    <title>Hanan Store - Worth Every Rupee</title>
+    
+    <!-- Google Fonts: Cinzel for luxury serif typography, Inter for geometric interfaces -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome CDN for elite vector icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Tailwind CSS Engine CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    fontFamily: {
+                        cinzel: ['Cinzel', 'serif'],
+                        inter: ['Inter', 'sans-serif'],
+                    },
+                    colors: {
+                        gold: {
+                            50: '#fbf8eb',
+                            100: '#f5edd0',
+                            200: '#ead79f',
+                            300: '#dbbe69',
+                            400: '#cca33e',
+                            500: '#b88d2f',
+                            600: '#9b7123',
+                            700: '#7a541d',
+                            800: '#5a3d1b',
+                            900: '#402c17',
+                            950: '#2b1c0e',
+                        },
+                        royal: {
+                            900: '#0b0c1e',
+                            950: '#04050f'
+                        }
+                    },
+                    boxShadow: {
+                        'gold-glow': '0 0 15px rgba(204, 163, 62, 0.15)',
+                        'gold-glow-lg': '0 0 30px rgba(204, 163, 62, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        /* Smooth Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #04050f;
+        }
+        .light ::-webkit-scrollbar-track {
+            background: #f8fafc;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #cca33e;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #b88d2f;
+        }
+
+        /* Glassmorphic luxury panel bases */
+        .glass-panel {
+            background: rgba(11, 12, 30, 0.65);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+        .light .glass-panel {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        /* Golden shimmer effect on key interactive items */
+        .gold-shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+        .gold-shimmer::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(
+                45deg,
+                transparent 45%,
+                rgba(204, 163, 62, 0.3) 50%,
+                transparent 55%
+            );
+            transform: rotate(45deg);
+            transition: transform 0.6s ease;
+        }
+        .gold-shimmer:hover::after {
+            transform: translate(50%, 50%) rotate(45deg);
+        }
+
+        /* Dynamic Fade Transitions for Route Loading */
+        .page-transition {
+            animation: fadeIn 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="font-inter bg-slate-950 text-slate-100 transition-colors duration-300 overflow-x-hidden dark:bg-royal-950 dark:text-slate-100 light:bg-slate-50 light:text-slate-900">
+
+    <!-- High-end elegant floating action messages -->
+    <div id="toast-container" class="fixed bottom-6 right-6 z-50 flex flex-col gap-3 max-w-sm w-full pointer-events-none"></div>
+
+    <header id="main-nav" class="fixed top-0 left-0 w-full z-40 transition-all duration-300 glass-panel shadow-[0_4px_30px_rgba(0,0,0,0.1)]">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Brand Logo identity -->
+                <div class="flex-shrink-0 cursor-pointer" onclick="navigateTo('home')">
+                    <span class="font-cinzel text-2xl font-black tracking-[0.2em] bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500 bg-clip-text text-transparent hover:brightness-110 transition-all duration-300">
+                        HANAN
+                    </span>
+                    <span class="block font-inter text-[8px] tracking-[0.45em] text-amber-500 font-bold -mt-1 text-center">STORE</span>
+                </div>
+
+                <!-- Desktop Core Menu Links -->
+                <nav class="hidden md:flex space-x-1 lg:space-x-4">
+                    <button onclick="navigateTo('home')" class="nav-link px-3 py-2 text-xs lg:text-sm font-semibold tracking-widest uppercase hover:text-amber-500 transition-colors duration-200 text-amber-500">Home</button>
+                    <button onclick="navigateTo('shop')" class="nav-link px-3 py-2 text-xs lg:text-sm font-semibold tracking-widest uppercase hover:text-amber-500 transition-colors duration-200">Shop</button>
+                    <button onclick="navigateTo('deals')" class="nav-link px-3 py-2 text-xs lg:text-sm font-semibold tracking-widest uppercase hover:text-amber-500 transition-colors duration-200">Deals</button>
+                    <button onclick="navigateTo('about')" class="nav-link px-3 py-2 text-xs lg:text-sm font-semibold tracking-widest uppercase hover:text-amber-500 transition-colors duration-200">About</button>
+                    <button onclick="navigateTo('contact')" class="nav-link px-3 py-2 text-xs lg:text-sm font-semibold tracking-widest uppercase hover:text-amber-500 transition-colors duration-200">Contact</button>
+                </nav>
+
+                <!-- Search and Live Bar Segment -->
+                <div class="hidden lg:block relative w-64 max-w-xs">
+                    <div class="relative">
+                        <input type="text" id="global-search-input" oninput="handleSearchInput(this.value)" placeholder="Search premium items..." 
+                               class="w-full bg-slate-900/40 text-xs text-slate-100 placeholder-slate-400 pl-4 pr-10 py-2 rounded-full border border-slate-700/50 focus:outline-none focus:border-amber-500 focus:ring-1 focus:ring-amber-500 transition-all light:bg-white/40 light:text-slate-900 light:border-slate-300">
+                        <button class="absolute right-3 top-2.5 text-slate-400 hover:text-amber-500 transition-colors">
+                            <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                        </button>
+                    </div>
+                    <!-- Autocomplete popup drawer -->
+                    <div id="search-autocomplete" class="absolute left-0 right-0 top-full mt-2 hidden glass-panel rounded-lg shadow-xl overflow-hidden z-50 text-xs"></div>
+                </div>
+
+                <!-- Action Utilities and Dashboard Toggles -->
+                <div class="flex items-center space-x-2 md:space-x-4">
+                    <!-- Theme Toggle -->
+                    <button onclick="toggleTheme()" class="p-2 rounded-full text-slate-300 hover:text-amber-500 hover:bg-slate-900/30 transition-all" title="Toggle Theme">
+                        <i id="theme-icon" class="fa-solid fa-moon text-md"></i>
+                    </button>
+
+                    <!-- User Dashboard trigger -->
+                    <button onclick="navigateTo('account')" class="p-2 rounded-full text-slate-300 hover:text-amber-500 hover:bg-slate-900/30 transition-all" title="User Account">
+                        <i class="fa-solid fa-user text-md"></i>
+                    </button>
+
+                    <!-- Wishlist tracker -->
+                    <button onclick="navigateTo('wishlist')" class="relative p-2 rounded-full text-slate-300 hover:text-amber-500 hover:bg-slate-900/30 transition-all" title="My Wishlist">
+                        <i class="fa-solid fa-heart text-md"></i>
+                        <span id="wishlist-badge" class="absolute -top-1 -right-1 bg-gradient-to-r from-amber-400 to-yellow-600 text-[10px] text-slate-950 font-extrabold rounded-full w-5 h-5 flex items-center justify-center shadow-lg transform scale-90 hidden">0</span>
+                    </button>
+
+                    <!-- Shopping Cart drawer -->
+                    <button onclick="navigateTo('cart')" class="relative p-2 rounded-full text-slate-300 hover:text-amber-500 hover:bg-slate-900/30 transition-all" title="View Cart">
+                        <i class="fa-solid fa-bag-shopping text-md"></i>
+                        <span id="cart-badge" class="absolute -top-1 -right-1 bg-gradient-to-r from-amber-400 to-yellow-600 text-[10px] text-slate-950 font-extrabold rounded-full w-5 h-5 flex items-center justify-center shadow-lg transform scale-90 hidden">0</span>
+                    </button>
+
+                    <!-- Mobile Responsive Menu Toggle -->
+                    <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-full text-slate-300 hover:text-amber-500 transition-all">
+                        <i id="mobile-menu-icon" class="fa-solid fa-bars text-lg"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Drawer Menu -->
+        <div id="mobile-menu" class="hidden md:hidden border-t border-slate-800/80 glass-panel shadow-inner transition-all duration-300">
+            <div class="px-4 pt-2 pb-4 space-y-1">
+                <button onclick="navigateTo('home')" class="mobile-nav-link block w-full text-left px-3 py-2 rounded-md text-sm font-semibold tracking-widest uppercase hover:bg-amber-500/10 hover:text-amber-500">Home</button>
+                <button onclick="navigateTo('shop')" class="mobile-nav-link block w-full text-left px-3 py-2 rounded-md text-sm font-semibold tracking-widest uppercase hover:bg-amber-500/10 hover:text-amber-500">Shop</button>
+                <button onclick="navigateTo('deals')" class="mobile-nav-link block w-full text-left px-3 py-2 rounded-md text-sm font-semibold tracking-widest uppercase hover:bg-amber-500/10 hover:text-amber-500">Deals</button>
+                <button onclick="navigateTo('about')" class="mobile-nav-link block w-full text-left px-3 py-2 rounded-md text-sm font-semibold tracking-widest uppercase hover:bg-amber-500/10 hover:text-amber-500">About</button>
+                <button onclick="navigateTo('contact')" class="mobile-nav-link block w-full text-left px-3 py-2 rounded-md text-sm font-semibold tracking-widest uppercase hover:bg-amber-500/10 hover:text-amber-500">Contact</button>
+                
+                <!-- Search feature in mobile layout -->
+                <div class="relative mt-4 px-3">
+                    <input type="text" oninput="handleSearchInput(this.value)" placeholder="Search products..." 
+                           class="w-full bg-slate-900/60 text-xs text-slate-100 placeholder-slate-400 pl-4 pr-10 py-2.5 rounded-full border border-slate-700/50 focus:outline-none focus:border-amber-500 light:bg-white/60 light:text-slate-900 light:border-slate-300">
+                    <button class="absolute right-6 top-3 text-slate-400">
+                        <i class="fa-solid fa-magnifying-glass text-xs"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Base Offset for content -->
+    <div class="h-20"></div>
+
+    <main class="min-h-[calc(100vh-80px-300px)]">
+        
+        <!-- 1. HOME PAGE VIEW -->
+        <section id="page-home" class="page-view page-transition">
+            <div class="relative h-[80vh] min-h-[500px] w-full bg-slate-950 overflow-hidden flex items-center">
+                <!-- Visual Background Elements -->
+                <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-indigo-950/40 via-slate-950 to-slate-950"></div>
+                <div class="absolute right-0 top-10 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[120px] pointer-events-none"></div>
+                <div class="absolute left-10 bottom-10 w-[400px] h-[400px] bg-purple-500/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+                <!-- Slide Showcase -->
+                <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full z-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                    <div class="space-y-6">
+                        <span class="inline-block px-3 py-1 rounded-full border border-amber-500/40 bg-amber-500/10 text-amber-500 text-xs font-bold tracking-widest uppercase">
+                            Premium Luxury Experience
+                        </span>
+                        <h1 class="font-cinzel text-4xl sm:text-5xl lg:text-6xl font-black leading-tight text-white">
+                            Discover Products <br>
+                            <span class="bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500 bg-clip-text text-transparent">Worth Every Rupee</span>
+                        </h1>
+                        <p class="text-slate-400 text-sm sm:text-base max-w-md">
+                            Experience exquisite craftsmanship and state-of-the-art technological lifestyle additions carefully curated for the luxury connoisseur.
+                        </p>
+                        <div class="flex flex-wrap gap-4 pt-4">
+                            <button onclick="navigateTo('shop')" class="gold-shimmer px-8 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 hover:to-yellow-500 text-slate-950 font-bold tracking-widest uppercase text-xs rounded-full shadow-[0_4px_20px_rgba(204,163,62,0.4)] hover:shadow-[0_4px_25px_rgba(204,163,62,0.6)] transform hover:-translate-y-0.5 transition-all">
+                                Shop Now <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
+                            </button>
+                            <button onclick="scrollToFeatured()" class="px-8 py-3.5 bg-transparent border-2 border-slate-700 hover:border-amber-500 text-white font-bold tracking-widest uppercase text-xs rounded-full hover:bg-white/5 transition-all">
+                                Explore Collection
+                            </button>
+                        </div>
+                    </div>
+                    <!-- Luxury Showcase Hero Banner Image -->
+                    <div class="relative hidden md:block justify-self-center">
+                        <div class="relative w-80 h-96 lg:w-96 lg:h-[450px] rounded-3xl overflow-hidden shadow-gold-glow-lg border border-amber-500/30 transform hover:scale-105 transition-all duration-700">
+                            <img src="https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=600&q=80" alt="Hanan Store Premium Hero" class="w-full h-full object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950 via-slate-950/20 to-transparent"></div>
+                            <div class="absolute bottom-6 left-6 right-6 p-4 glass-panel rounded-xl">
+                                <h4 class="font-cinzel text-amber-400 text-lg font-bold">The Aurelia Chronograph</h4>
+                                <p class="text-[10px] text-slate-300 uppercase tracking-widest">Swiss craftsmanship — PKR 350,000</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Featured Categories Grid -->
+            <div id="featured-collections" class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center space-y-3 mb-16">
+                    <span class="text-amber-500 font-cinzel text-sm font-bold tracking-[0.2em] uppercase">Curated Catalog</span>
+                    <h2 class="font-cinzel text-3xl sm:text-4xl font-extrabold text-white">Elite Categories</h2>
+                    <div class="w-20 h-0.5 bg-amber-500 mx-auto rounded-full"></div>
+                </div>
+
+                <!-- Interactive Premium Category Cards -->
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6" id="categories-grid-container">
+                    <!-- Cards populated dynamically -->
+                </div>
+            </div>
+
+            <!-- Best Sellers Grid Segment -->
+            <div class="py-16 bg-slate-900/40 light:bg-slate-100">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="flex items-end justify-between mb-12">
+                        <div class="space-y-2">
+                            <span class="text-amber-500 font-cinzel text-sm font-bold tracking-[0.2em] uppercase">Most Coveted Items</span>
+                            <h2 class="font-cinzel text-3xl font-extrabold text-white">Our Best Sellers</h2>
+                        </div>
+                        <button onclick="navigateTo('shop')" class="text-amber-500 hover:text-amber-400 font-bold tracking-wider text-xs sm:text-sm flex items-center gap-1.5 transition-colors">
+                            View All <i class="fa-solid fa-arrow-right"></i>
+                        </button>
+                    </div>
+                    <div id="best-sellers-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+                        <!-- Best Sellers populated by JS -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Interactive Premium Deals Banner Section -->
+            <div class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="relative rounded-3xl overflow-hidden glass-panel border border-amber-500/20 p-8 sm:p-12 lg:p-16 flex flex-col md:flex-row items-center gap-8 shadow-gold-glow">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-950/40 to-slate-950/40 pointer-events-none z-0"></div>
+                    <div class="space-y-4 md:w-3/5 z-10">
+                        <span class="px-3 py-1 rounded-full border border-amber-500/40 bg-amber-500/10 text-amber-500 text-xs font-bold tracking-widest uppercase">
+                            Limited Time Masterclass Offer
+                        </span>
+                        <h2 class="font-cinzel text-3xl sm:text-4xl font-extrabold text-white">Imperial Flash Sale</h2>
+                        <p class="text-slate-400 text-sm max-w-md">
+                            Acquire Hanan premium artifacts at unprecedented values. This curated pricing resets immediately upon timer expiration.
+                        </p>
+                        <!-- Countdown timer block -->
+                        <div class="flex gap-4 pt-2">
+                            <div class="glass-panel px-4 py-2 rounded-lg text-center border border-amber-500/30 min-w-[70px]">
+                                <span id="timer-hours" class="block font-cinzel text-2xl font-black text-amber-500">23</span>
+                                <span class="text-[9px] text-slate-400 uppercase tracking-widest">Hrs</span>
+                            </div>
+                            <div class="glass-panel px-4 py-2 rounded-lg text-center border border-amber-500/30 min-w-[70px]">
+                                <span id="timer-minutes" class="block font-cinzel text-2xl font-black text-amber-500">59</span>
+                                <span class="text-[9px] text-slate-400 uppercase tracking-widest">Mins</span>
+                            </div>
+                            <div class="glass-panel px-4 py-2 rounded-lg text-center border border-amber-500/30 min-w-[70px]">
+                                <span id="timer-seconds" class="block font-cinzel text-2xl font-black text-amber-500">59</span>
+                                <span class="text-[9px] text-slate-400 uppercase tracking-widest">Secs</span>
+                            </div>
+                        </div>
+                        <button onclick="navigateTo('deals')" class="mt-4 inline-block gold-shimmer px-6 py-3 bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-950 font-bold tracking-widest uppercase text-xs rounded-full">
+                            Explore Flash Deals
+                        </button>
+                    </div>
+                    <div class="relative md:w-2/5 justify-self-center z-10">
+                        <img src="https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80" alt="Sale item" class="w-56 h-56 object-cover rounded-full border-4 border-amber-500/40 shadow-gold-glow-lg mx-auto transform hover:rotate-6 transition-all duration-500">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Elegant Customer Reviews Section -->
+            <div class="py-16 bg-slate-900/20 light:bg-slate-50">
+                <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                    <div class="text-center space-y-3 mb-16">
+                        <span class="text-amber-500 font-cinzel text-sm font-bold tracking-[0.2em] uppercase">Voices of Splendor</span>
+                        <h2 class="font-cinzel text-3xl font-extrabold text-white">Consensus of the Elite</h2>
+                        <div class="w-20 h-0.5 bg-amber-500 mx-auto rounded-full"></div>
+                    </div>
+
+                    <div class="relative max-w-4xl mx-auto overflow-hidden">
+                        <div id="reviews-slider-track" class="flex transition-transform duration-500 ease-out">
+                            <!-- Review cards loaded from review list database -->
+                        </div>
+                        <!-- Controls -->
+                        <div class="flex justify-center gap-4 mt-8">
+                            <button onclick="slideReviews(-1)" class="w-10 h-10 rounded-full border border-slate-700 hover:border-amber-500 text-slate-400 hover:text-amber-500 flex items-center justify-center transition-colors">
+                                <i class="fa-solid fa-chevron-left"></i>
+                            </button>
+                            <button onclick="slideReviews(1)" class="w-10 h-10 rounded-full border border-slate-700 hover:border-amber-500 text-slate-400 hover:text-amber-500 flex items-center justify-center transition-colors">
+                                <i class="fa-solid fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Premium Newsletter Form Grid -->
+            <div class="py-20 border-t border-slate-900">
+                <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center space-y-6">
+                    <i class="fa-solid fa-envelope-open-text text-amber-500 text-4xl mb-2 block"></i>
+                    <h2 class="font-cinzel text-3xl font-black text-white">Join the Circle</h2>
+                    <p class="text-slate-400 text-sm max-w-lg mx-auto">
+                        Recipients of our publication receive invitations to private catalog releases, high-end design insights, and members-only valuations.
+                    </p>
+                    <div class="max-w-md mx-auto">
+                        <form onsubmit="handleNewsletterSubmit(event)" class="flex flex-col sm:flex-row gap-2">
+                            <input type="email" required placeholder="Provide luxury email address..." 
+                                   class="flex-grow px-5 py-3.5 bg-slate-900 border border-slate-800 text-xs rounded-full focus:outline-none focus:border-amber-500 text-slate-100">
+                            <button type="submit" class="gold-shimmer px-6 py-3.5 bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-950 text-xs font-bold tracking-widest uppercase rounded-full">
+                                Subscribe
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. PRODUCT LISTING / SHOP PAGE -->
+        <section id="page-shop" class="page-view page-transition hidden py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col lg:flex-row gap-8">
+                <!-- Sidebar filter controllers (Desktop) -->
+                <aside class="w-full lg:w-1/4 space-y-8 glass-panel p-6 rounded-2xl border border-slate-800 h-fit">
+                    <div class="flex items-center justify-between border-b border-slate-800 pb-4">
+                        <h3 class="font-cinzel text-lg font-bold text-white tracking-wider">Refine By</h3>
+                        <button onclick="clearAllFilters()" class="text-[10px] text-amber-500 tracking-wider uppercase hover:text-amber-400 transition-colors">Clear All</button>
+                    </div>
+
+                    <!-- Category filter nodes -->
+                    <div class="space-y-3">
+                        <h4 class="text-xs font-extrabold text-slate-400 uppercase tracking-widest">Category</h4>
+                        <div class="flex flex-col gap-2" id="filter-categories-list">
+                            <!-- Categories generated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Pricing range slide filter configured in PKR -->
+                    <div class="space-y-3">
+                        <div class="flex justify-between items-center">
+                            <h4 class="text-xs font-extrabold text-slate-400 uppercase tracking-widest">Max Price</h4>
+                            <span id="price-slider-display" class="text-xs font-bold text-amber-500">PKR 500,000</span>
+                        </div>
+                        <input type="range" id="price-slider-input" min="10000" max="500000" step="5000" value="500000" oninput="updatePriceFilter(this.value)"
+                               class="w-full accent-amber-500 bg-slate-800 h-1.5 rounded-lg appearance-none cursor-pointer">
+                    </div>
+
+                    <!-- Customer Rating criteria -->
+                    <div class="space-y-3">
+                        <h4 class="text-xs font-extrabold text-slate-400 uppercase tracking-widest">Minimum Rating</h4>
+                        <div class="flex flex-col gap-2">
+                            <label class="flex items-center gap-2 cursor-pointer text-xs text-slate-300 hover:text-amber-500">
+                                <input type="radio" name="rating-filter" value="0" checked onchange="updateRatingFilter(0)" class="accent-amber-500">
+                                <span>All Ratings</span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer text-xs text-slate-300 hover:text-amber-500">
+                                <input type="radio" name="rating-filter" value="4.5" onchange="updateRatingFilter(4.5)" class="accent-amber-500">
+                                <span class="flex items-center text-amber-400 gap-1">4.5+ <i class="fa-solid fa-star"></i></span>
+                            </label>
+                            <label class="flex items-center gap-2 cursor-pointer text-xs text-slate-300 hover:text-amber-500">
+                                <input type="radio" name="rating-filter" value="4.0" onchange="updateRatingFilter(4.0)" class="accent-amber-500">
+                                <span class="flex items-center text-amber-400 gap-1">4.0+ <i class="fa-solid fa-star"></i></span>
+                            </label>
+                        </div>
+                    </div>
+                </aside>
+
+                <!-- Core listings content window -->
+                <div class="w-full lg:w-3/4 space-y-6">
+                    <!-- Sorting control banner -->
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 border-b border-slate-800 pb-4">
+                        <span class="text-xs text-slate-400 tracking-wider font-semibold" id="shop-results-count">Showing 0 luxury goods</span>
+                        <div class="flex items-center gap-4 w-full sm:w-auto">
+                            <select id="sort-select" onchange="updateSorting(this.value)" class="text-xs bg-slate-900 border border-slate-800 rounded-lg px-3 py-2 text-slate-300 focus:outline-none focus:border-amber-500 cursor-pointer">
+                                <option value="featured">Featured Collection</option>
+                                <option value="price-asc">Price: Low to High</option>
+                                <option value="price-desc">Price: High to Low</option>
+                                <option value="rating">Top Rated</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <!-- Core items layout -->
+                    <div id="shop-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- Instantiated dynamically -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. PRODUCT DETAILS PAGE -->
+        <section id="page-product-details" class="page-view page-transition hidden py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div id="product-detail-layout" class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Dynamically compiled layout with high-end loupe zoom and active indicators -->
+            </div>
+        </section>
+
+        <!-- 4. SHOPPING CART PAGE -->
+        <section id="page-cart" class="page-view page-transition hidden py-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-cinzel text-3xl font-extrabold text-white mb-8">My Shopping Bag</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Shopping Cart Item Rows -->
+                <div class="lg:col-span-2 space-y-4" id="cart-items-container">
+                    <!-- Dynamic Cart Rows Loaded here -->
+                </div>
+
+                <!-- Shopping Cart Summaries and Subtotal Box -->
+                <div class="glass-panel p-6 rounded-2xl border border-slate-800 h-fit space-y-6">
+                    <h3 class="font-cinzel text-lg font-bold text-white border-b border-slate-800 pb-3">Order Details</h3>
+                    <div class="space-y-3 text-sm">
+                        <div class="flex justify-between text-slate-400">
+                            <span>Subtotal</span>
+                            <span id="cart-subtotal" class="font-bold text-white">PKR 0</span>
+                        </div>
+                        <div class="flex justify-between text-slate-400">
+                            <span>Estimated Luxury Duty / Tax</span>
+                            <span id="cart-tax" class="font-bold text-white">PKR 0</span>
+                        </div>
+                        <div class="flex justify-between text-slate-400">
+                            <span>Premium Safe Courier</span>
+                            <span id="cart-shipping" class="font-bold text-white">PKR 0</span>
+                        </div>
+                        <div id="coupon-applied-container" class="flex justify-between text-emerald-400 hidden">
+                            <span>Privilege Discount (20%)</span>
+                            <span id="cart-discount" class="font-bold">-PKR 0</span>
+                        </div>
+                    </div>
+
+                    <!-- Coupon validator input box -->
+                    <div class="pt-4 border-t border-slate-800">
+                        <label class="block text-xs text-slate-400 font-extrabold uppercase tracking-widest mb-2">Privilege Code</label>
+                        <div class="flex gap-2">
+                            <input type="text" id="coupon-input" placeholder="GOLD20" class="flex-grow px-4 py-2 bg-slate-900 border border-slate-800 text-xs rounded-lg focus:outline-none focus:border-amber-500 uppercase text-slate-200">
+                            <button onclick="applyCoupon()" class="px-4 py-2 bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-slate-300 text-xs font-bold rounded-lg transition-all">Apply</button>
+                        </div>
+                    </div>
+
+                    <!-- Final Order Value -->
+                    <div class="pt-4 border-t border-slate-800 flex justify-between items-center">
+                        <span class="text-sm text-slate-400">Total Value</span>
+                        <span id="cart-grandtotal" class="font-cinzel text-2xl font-extrabold text-amber-500">PKR 0</span>
+                    </div>
+
+                    <button onclick="navigateTo('checkout')" class="w-full text-center gold-shimmer py-3.5 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 text-slate-950 font-bold tracking-widest uppercase text-xs rounded-full shadow-gold-glow">
+                        Proceed to Checkout
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- 5. CHECKOUT PAGE -->
+        <section id="page-checkout" class="page-view page-transition hidden py-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-cinzel text-3xl font-extrabold text-white mb-8">Elite Checkout</h2>
+            <form onsubmit="handlePlaceOrder(event)" class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <!-- Billing Details & Delivery fields -->
+                <div class="lg:col-span-2 glass-panel p-6 rounded-2xl border border-slate-800 space-y-6">
+                    <h3 class="font-cinzel text-lg font-bold text-white border-b border-slate-800 pb-3">Courier Address</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                        <div class="space-y-2">
+                            <label class="block text-xs text-slate-400 uppercase tracking-widest font-extrabold">First Name</label>
+                            <input type="text" required class="w-full px-4 py-2.5 bg-slate-900 border border-slate-800 text-xs rounded-lg focus:outline-none focus:border-amber-500 text-slate-200">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-xs text-slate-400 uppercase tracking-widest font-extrabold">Last Name</label>
+                            <input type="text" required class="w-full px-4 py-2.5 bg-slate-900 border border-slate-800 text-xs rounded-lg focus:outline-none focus:border-amber-500 text-slate-200">
+                        </div>
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-xs text-slate-400 uppercase tracking-widest font-extrabold">Delivery Address</label>
+                        <input type="text" required class="w-full px-4 py-2.5 bg-slate-900 border border-slate-800 text-xs rounded-lg focus:outline-none focus:border-amber-500 text-slate-200" placeholder="Avenue Montaigne, Penthouse A">
+                    </div>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <div class="space-y-2">
+                            <label class="block text-xs text-slate-400 uppercase tracking-widest font-extrabold">City</label>
+                            <input type="text" required class="w-full px-4 py-2.5 bg-slate-900 border border-slate-800 text-xs rounded-lg focus:outline-none focus:border-amber-500 text-slate-200">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-xs text-slate-400 uppercase tracking-widest font-extrabold">Postal ZIP</label>
+                            <input type="text" required class="w-full px-4 py-2.5 bg-slate-900 border border-slate-800 text-xs rounded-lg focus:outline-none focus:border-amber-500 text-slate-200">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-xs text-slate-400 uppercase tracking-widest font-extrabold">Contact Phone</label>
+                            <input type="tel" required class="w-full px-4 py-2.5 bg-slate-900 border border-slate-800 text-xs rounded-lg focus:outline-none focus:border-amber-500 text-slate-200">
+                        </div>
+                    </div>
+
+                    <!-- Secure Payments Block -->
+                    <h3 class="font-cinzel text-lg font-bold text-white border-b border-slate-800 pt-6 pb-3">Payment Privilege</h3>
+                    <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                        <label class="flex items-center justify-between p-4 glass-panel border border-amber-500/20 rounded-xl cursor-pointer">
+                            <div class="flex items-center gap-3">
+                                <input type="radio" name="payment-method" value="card" checked class="accent-amber-500">
+                                <span class="text-xs font-bold text-slate-200">Secure Card</span>
+                            </div>
+                            <i class="fa-solid fa-credit-card text-amber-500"></i>
+                        </label>
+                        <label class="flex items-center justify-between p-4 glass-panel border border-slate-800 rounded-xl cursor-pointer hover:border-amber-500/30">
+                            <div class="flex items-center gap-3">
+                                <input type="radio" name="payment-method" value="wallet" class="accent-amber-500">
+                                <span class="text-xs font-bold text-slate-200">Digital Wallet</span>
+                            </div>
+                            <i class="fa-brands fa-apple-pay text-amber-500 text-lg"></i>
+                        </label>
+                        <label class="flex items-center justify-between p-4 glass-panel border border-slate-800 rounded-xl cursor-pointer hover:border-amber-500/30">
+                            <div class="flex items-center gap-3">
+                                <input type="radio" name="payment-method" value="cod" class="accent-amber-500">
+                                <span class="text-xs font-bold text-slate-200">COD Reserve</span>
+                            </div>
+                            <i class="fa-solid fa-truck-ramp-box text-amber-500"></i>
+                        </label>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                        <div class="space-y-2">
+                            <label class="block text-xs text-slate-400 uppercase tracking-widest font-extrabold">Card Number</label>
+                            <input type="text" placeholder="•••• •••• •••• ••••" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-800 text-xs rounded-lg focus:outline-none focus:border-amber-500 text-slate-200">
+                        </div>
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="space-y-2">
+                                <label class="block text-xs text-slate-400 uppercase tracking-widest font-extrabold">Expiry Date</label>
+                                <input type="text" placeholder="MM/YY" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-800 text-xs rounded-lg focus:outline-none focus:border-amber-500 text-slate-200">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-xs text-slate-400 uppercase tracking-widest font-extrabold">CVV Security</label>
+                                <input type="password" placeholder="•••" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-800 text-xs rounded-lg focus:outline-none focus:border-amber-500 text-slate-200">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Receipt Invoice breakdown summary -->
+                <div class="glass-panel p-6 rounded-2xl border border-slate-800 h-fit space-y-6">
+                    <h3 class="font-cinzel text-lg font-bold text-white border-b border-slate-800 pb-3">Receipt Invoice</h3>
+                    <div id="checkout-order-summary" class="divide-y divide-slate-800/60 max-h-48 overflow-y-auto pr-2">
+                        <!-- Instantiated through JavaScript -->
+                    </div>
+                    <div class="pt-4 border-t border-slate-800 flex justify-between items-center text-sm">
+                        <span class="text-slate-400">Total Charged</span>
+                        <span id="checkout-grandtotal" class="font-cinzel text-xl font-extrabold text-amber-500">PKR 0</span>
+                    </div>
+                    <button type="submit" class="w-full text-center gold-shimmer py-3.5 bg-gradient-to-r from-amber-500 to-yellow-600 hover:from-amber-400 text-slate-950 font-bold tracking-widest uppercase text-xs rounded-full shadow-gold-glow">
+                        Place Private Order
+                    </button>
+                </div>
+            </form>
+        </section>
+
+        <!-- 6. USER ACCOUNT SYSTEM VIEW -->
+        <section id="page-account" class="page-view page-transition hidden py-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Unauthorized state layout (Login Panel) -->
+            <div id="auth-section" class="max-w-md mx-auto glass-panel p-8 rounded-2xl border border-slate-800 space-y-6">
+                <div class="text-center space-y-2">
+                    <h2 id="auth-title" class="font-cinzel text-2xl font-black text-white">Privileged Entry</h2>
+                    <p id="auth-subtitle" class="text-xs text-slate-400">Provide credential keys to enter your account profile</p>
+                </div>
+
+                <!-- Registration / Login toggle forms -->
+                <form id="auth-form" onsubmit="handleAuthSubmit(event)" class="space-y-4">
+                    <div class="space-y-2">
+                        <label class="block text-xs text-slate-400 uppercase tracking-widest font-extrabold">E-Mail Address</label>
+                        <input type="email" id="auth-email" required class="w-full px-4 py-2.5 bg-slate-900 border border-slate-800 text-xs rounded-lg focus:outline-none focus:border-amber-500 text-slate-200">
+                    </div>
+                    <div class="space-y-2">
+                        <label class="block text-xs text-slate-400 uppercase tracking-widest font-extrabold">Security Key</label>
+                        <input type="password" id="auth-password" required class="w-full px-4 py-2.5 bg-slate-900 border border-slate-800 text-xs rounded-lg focus:outline-none focus:border-amber-500 text-slate-200">
+                    </div>
+                    <!-- Register specific fields (Hidden dynamically) -->
+                    <div id="auth-register-fields" class="space-y-4 hidden">
+                        <div class="space-y-2">
+                            <label class="block text-xs text-slate-400 uppercase tracking-widest font-extrabold">Full Name</label>
+                            <input type="text" id="auth-name" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-800 text-xs rounded-lg focus:outline-none focus:border-amber-500 text-slate-200">
+                        </div>
+                    </div>
+
+                    <button type="submit" id="auth-submit-btn" class="w-full text-center gold-shimmer py-3 bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-950 font-bold tracking-widest uppercase text-xs rounded-full shadow-gold-glow">
+                        Enter Private Portal
+                    </button>
+                </form>
+
+                <div class="text-center">
+                    <button onclick="toggleAuthMode()" id="auth-toggle-btn" class="text-xs text-amber-500 hover:text-amber-400 font-semibold tracking-wider transition-all">
+                        Don't have an account? Register Access
+                    </button>
+                </div>
+            </div>
+
+            <!-- Logged-in State (Dashboard Dashboard Panel) -->
+            <div id="dashboard-section" class="hidden grid grid-cols-1 md:grid-cols-4 gap-8">
+                <!-- Sidebar dashboard controllers -->
+                <aside class="md:col-span-1 glass-panel p-6 rounded-2xl border border-slate-800 h-fit space-y-4">
+                    <div class="flex items-center gap-3 border-b border-slate-800 pb-4">
+                        <div class="w-10 h-10 rounded-full bg-gradient-to-r from-amber-500 to-yellow-600 flex items-center justify-center font-cinzel text-slate-950 font-bold text-lg">H</div>
+                        <div>
+                            <h4 id="user-display-name" class="text-sm font-bold text-white">Honorary Member</h4>
+                            <span class="text-[9px] text-amber-500 tracking-wider uppercase font-semibold">Tier: Imperial Gold</span>
+                        </div>
+                    </div>
+                    <div class="flex flex-col gap-1 text-xs">
+                        <button onclick="switchDashboardTab('orders')" class="dashboard-tab-btn text-left px-4 py-3 rounded-xl bg-amber-500/10 text-amber-500 font-bold tracking-wider">Orders Ledger</button>
+                        <button onclick="switchDashboardTab('addresses')" class="dashboard-tab-btn text-left px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-900/40">Registered Address</button>
+                        <button onclick="switchDashboardTab('settings')" class="dashboard-tab-btn text-left px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-900/40">Credential Settings</button>
+                        <button onclick="handleLogout()" class="text-left px-4 py-3 rounded-xl text-rose-400 hover:bg-rose-500/10 font-bold tracking-wider mt-4">Logout</button>
+                    </div>
+                </aside>
+
+                <!-- Core Dynamic Info panel -->
+                <div class="md:col-span-3 glass-panel p-6 rounded-2xl border border-slate-800">
+                    <!-- Orders Ledger Tab view -->
+                    <div id="dash-tab-orders" class="dash-tab-view space-y-6">
+                        <h3 class="font-cinzel text-xl font-bold text-white border-b border-slate-800 pb-3">Acquisition History</h3>
+                        <div id="orders-ledger-container" class="space-y-4">
+                            <!-- Populated with items or default zero-order notification -->
+                        </div>
+                    </div>
+
+                    <!-- Addresses Tab view -->
+                    <div id="dash-tab-addresses" class="dash-tab-view hidden space-y-6">
+                        <h3 class="font-cinzel text-xl font-bold text-white border-b border-slate-800 pb-3">Secure Courier Address</h3>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="p-4 border border-slate-800/80 rounded-xl space-y-2">
+                                <span class="text-[9px] text-amber-500 uppercase tracking-widest font-extrabold">Primary Residence</span>
+                                <h4 class="text-xs font-bold text-white">Honorary Mansion Suite</h4>
+                                <p class="text-xs text-slate-400">101 Avenue des Champs-Élysées, Paris, 75008</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Settings Tab view -->
+                    <div id="dash-tab-settings" class="dash-tab-view hidden space-y-6">
+                        <h3 class="font-cinzel text-xl font-bold text-white border-b border-slate-800 pb-3">Portal Settings</h3>
+                        <form onsubmit="updateDashboardSettings(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div class="space-y-2">
+                                <label class="block text-xs text-slate-400 uppercase tracking-widest font-extrabold">Portal Username</label>
+                                <input type="text" id="setting-name" value="Honorary Member" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-800 text-xs rounded-lg focus:outline-none focus:border-amber-500 text-slate-200">
+                            </div>
+                            <div class="space-y-2">
+                                <label class="block text-xs text-slate-400 uppercase tracking-widest font-extrabold">Verify Security Key</label>
+                                <input type="password" value="••••••••" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-800 text-xs rounded-lg focus:outline-none focus:border-amber-500 text-slate-200">
+                            </div>
+                            <button type="submit" class="sm:col-span-2 justify-self-start px-6 py-2.5 bg-amber-500 text-slate-950 font-bold tracking-widest uppercase text-xs rounded-full">Save Changes</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 7. WISHLIST SYSTEM PAGE -->
+        <section id="page-wishlist" class="page-view page-transition hidden py-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 class="font-cinzel text-3xl font-extrabold text-white mb-8">My Luxury Wishlist</h2>
+            <div id="wishlist-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Dynamically updated from bookmarks list -->
+            </div>
+        </section>
+
+        <!-- 8. DEALS & FLASH SALE PAGE -->
+        <section id="page-deals" class="page-view page-transition hidden py-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center space-y-3 mb-16">
+                <span class="text-amber-500 font-cinzel text-sm font-bold tracking-[0.2em] uppercase">Imperial Offers</span>
+                <h2 class="font-cinzel text-3xl sm:text-4xl font-extrabold text-white">Elite Flash Sales</h2>
+                <p class="text-xs text-slate-400 max-w-md mx-auto">Acquire premier items and access temporary price adjustments available only this season.</p>
+                <div class="w-20 h-0.5 bg-amber-500 mx-auto rounded-full"></div>
+            </div>
+
+            <!-- Active promo voucher blocks -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Promo 1 -->
+                <div class="glass-panel p-6 rounded-2xl border border-amber-500/20 flex flex-col justify-between space-y-4 shadow-gold-glow">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="px-2 py-0.5 rounded-full border border-amber-500/30 bg-amber-500/10 text-amber-500 text-[9px] font-bold tracking-widest uppercase">Privilege Code</span>
+                            <h3 class="font-cinzel text-2xl font-black text-white mt-2">20% Masterclass Discount</h3>
+                        </div>
+                        <span class="text-4xl font-cinzel text-amber-400 font-black">20%</span>
+                    </div>
+                    <p class="text-slate-400 text-xs">Unlock access to our catalog premium discount for watches and tech gadgets. Minimum order PKR 50,000.</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-800">
+                        <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Use Code: <span class="text-amber-500 font-black">GOLD20</span></span>
+                        <button onclick="copyPromoCode('GOLD20')" class="px-4 py-1.5 bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-slate-300 text-[10px] font-extrabold uppercase rounded-lg transition-all">Copy Code</button>
+                    </div>
+                </div>
+
+                <!-- Promo 2 -->
+                <div class="glass-panel p-6 rounded-2xl border border-slate-800 flex flex-col justify-between space-y-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <span class="px-2 py-0.5 rounded-full border border-slate-700 bg-slate-800/40 text-slate-400 text-[9px] font-bold tracking-widest uppercase">Welcome Code</span>
+                            <h3 class="font-cinzel text-2xl font-black text-white mt-2">Free Prestige Delivery</h3>
+                        </div>
+                        <i class="fa-solid fa-truck-fast text-amber-500 text-3xl"></i>
+                    </div>
+                    <p class="text-slate-400 text-xs">Receive premium complimentary safe courier and duties waiver on checkout for any order inside Pakistan.</p>
+                    <div class="flex items-center justify-between pt-4 border-t border-slate-800">
+                        <span class="text-[10px] text-slate-400 font-bold uppercase tracking-wider">Use Code: <span class="text-amber-500 font-black">PRESTIGE</span></span>
+                        <button onclick="copyPromoCode('PRESTIGE')" class="px-4 py-1.5 bg-slate-800 hover:bg-amber-500 hover:text-slate-950 text-slate-300 text-[10px] font-extrabold uppercase rounded-lg transition-all">Copy Code</button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Curated flash collections grid -->
+            <div class="mt-16 space-y-8">
+                <h3 class="font-cinzel text-xl font-bold text-white border-b border-slate-800 pb-3">Active Flash Discounts</h3>
+                <div id="flash-deals-products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <!-- Loaded dynamically via JavaScript -->
+                </div>
+            </div>
+        </section>
+
+        <!-- 9. ABOUT US PAGE -->
+        <section id="page-about" class="page-view page-transition hidden py-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+                <div class="space-y-6">
+                    <span class="text-amber-500 font-cinzel text-sm font-bold tracking-[0.2em] uppercase">The Legacy</span>
+                    <h2 class="font-cinzel text-4xl font-extrabold text-white">Our Brand Story</h2>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Formed under the core belief that excellence is not optional, Hanan Store has established itself as the premier designer of high-end accessories, bespoke hardware, and timeless elements.
+                    </p>
+                    <p class="text-slate-400 text-sm leading-relaxed">
+                        Every curated item is sourced individually and refined manually, preserving the premium touch points. We believe that when you shop with us, you are making an investment in pieces that will outlive simple seasonal trends.
+                    </p>
+                    <div class="grid grid-cols-3 gap-4 pt-4 text-center">
+                        <div class="glass-panel p-4 rounded-xl">
+                            <span class="block font-cinzel text-2xl font-black text-amber-500">100%</span>
+                            <span class="text-[9px] text-slate-400 uppercase tracking-widest font-extrabold">Authentic</span>
+                        </div>
+                        <div class="glass-panel p-4 rounded-xl">
+                            <span class="block font-cinzel text-2xl font-black text-amber-500">14k+</span>
+                            <span class="text-[9px] text-slate-400 uppercase tracking-widest font-extrabold">Admirers</span>
+                        </div>
+                        <div class="glass-panel p-4 rounded-xl">
+                            <span class="block font-cinzel text-2xl font-black text-amber-500">Global</span>
+                            <span class="text-[9px] text-slate-400 uppercase tracking-widest font-extrabold">Logistics</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="relative justify-self-center">
+                    <div class="relative w-80 h-96 rounded-3xl overflow-hidden border border-amber-500/20 shadow-gold-glow">
+                        <img src="https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80" alt="About brand" class="w-full h-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-950 to-transparent"></div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mission, Vision values cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-8">
+                <div class="glass-panel p-8 rounded-2xl border border-slate-800 space-y-4">
+                    <i class="fa-solid fa-gem text-amber-500 text-3xl"></i>
+                    <h3 class="font-cinzel text-lg font-bold text-white">Our Promise</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        To offer curated hardware and materials that undergo quality inspections. If an item does not conform to rigorous specifications, it is excluded from our shelves.
+                    </p>
+                </div>
+                <div class="glass-panel p-8 rounded-2xl border border-slate-800 space-y-4">
+                    <i class="fa-solid fa-crown text-amber-500 text-3xl"></i>
+                    <h3 class="font-cinzel text-lg font-bold text-white">Our Vision</h3>
+                    <p class="text-slate-400 text-xs leading-relaxed">
+                        Enabling discerning citizens from every walk of life to discover quality tech, apparel, and lifestyle items seamlessly and directly.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- 10. CONTACT PAGE -->
+        <section id="page-contact" class="page-view page-transition hidden py-12 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+            <div class="text-center space-y-3 mb-12">
+                <span class="text-amber-500 font-cinzel text-sm font-bold tracking-[0.2em] uppercase">Private Assistance</span>
+                <h2 class="font-cinzel text-3xl sm:text-4xl font-extrabold text-white">Contact Our Office</h2>
+                <div class="w-20 h-0.5 bg-amber-500 mx-auto rounded-full"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <!-- Info cards details -->
+                <div class="space-y-6">
+                    <h3 class="font-cinzel text-xl font-bold text-white border-b border-slate-800 pb-3">Headquarters</h3>
+                    <div class="space-y-4">
+                        <div class="flex gap-4 items-start">
+                            <i class="fa-solid fa-location-dot text-amber-500 text-lg mt-0.5"></i>
+                            <div>
+                                <h4 class="text-xs font-extrabold uppercase tracking-widest text-slate-400">Address</h4>
+                                <p class="text-xs text-slate-300 mt-1">Jhang AYUB chowk(with Concierge Centers in Lahore & Karachi)</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <i class="fa-solid fa-envelope text-amber-500 text-lg mt-0.5"></i>
+                            <div>
+                                <h4 class="text-xs font-extrabold uppercase tracking-widest text-slate-400">Direct Desk</h4>
+                                <p class="text-xs text-slate-300 mt-1">abdulsingh3335@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-4 items-start">
+                            <i class="fa-solid fa-phone text-amber-500 text-lg mt-0.5"></i>
+                            <div>
+                                <h4 class="text-xs font-extrabold uppercase tracking-widest text-slate-400">Phone Support</h4>
+                                <p class="text-xs text-slate-300 mt-1">+92 3280612670</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Custom pulsing visual Map Placeholder -->
+                    <div class="relative rounded-2xl overflow-hidden h-48 border border-slate-800 bg-slate-900/40 flex items-center justify-center">
+                        <div class="absolute inset-0 bg-slate-950/20 pointer-events-none"></div>
+                        <div class="text-center z-10 space-y-2">
+                            <span class="inline-block w-3 h-3 bg-amber-500 rounded-full animate-ping mb-2"></span>
+                            <h4 class="font-cinzel text-xs font-bold text-white uppercase tracking-widest">Interactive Map</h4>
+                            <p class="text-[10px] text-slate-400">Geolocation: Pakistan Punjab Jhang</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contact Message Submission Form -->
+                <div class="glass-panel p-6 rounded-2xl border border-slate-800 space-y-4">
+                    <h3 class="font-cinzel text-xl font-bold text-white border-b border-slate-800 pb-3">Message Desk</h3>
+                    <form onsubmit="handleContactSubmit(event)" class="space-y-4">
+                        <div class="space-y-2">
+                            <label class="block text-xs text-slate-400 uppercase tracking-widest font-extrabold">Full Name</label>
+                            <input type="text" required class="w-full px-4 py-2.5 bg-slate-900 border border-slate-800 text-xs rounded-lg focus:outline-none focus:border-amber-500 text-slate-200">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-xs text-slate-400 uppercase tracking-widest font-extrabold">E-Mail Address</label>
+                            <input type="email" required class="w-full px-4 py-2.5 bg-slate-900 border border-slate-800 text-xs rounded-lg focus:outline-none focus:border-amber-500 text-slate-200">
+                        </div>
+                        <div class="space-y-2">
+                            <label class="block text-xs text-slate-400 uppercase tracking-widest font-extrabold">Inquiry Message</label>
+                            <textarea required rows="4" class="w-full px-4 py-2.5 bg-slate-900 border border-slate-800 text-xs rounded-lg focus:outline-none focus:border-amber-500 text-slate-200" placeholder="Describe requirements..."></textarea>
+                        </div>
+                        <button type="submit" class="w-full text-center gold-shimmer py-3 bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-950 font-bold tracking-widest uppercase text-xs rounded-full shadow-gold-glow">
+                            Submit Inquiry
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Quick view overlay Modal -->
+    <div id="quickview-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/80 backdrop-blur-md hidden">
+        <div class="relative w-full max-w-2xl glass-panel p-6 sm:p-8 rounded-3xl border border-slate-800 shadow-gold-glow-lg max-h-[90vh] overflow-y-auto">
+            <button onclick="closeQuickView()" class="absolute top-4 right-4 text-slate-400 hover:text-amber-500 transition-colors">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div id="quickview-modal-content" class="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-4">
+                <!-- Dynamically written in script block -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 15. LUXURY FOOTER -->
+    <footer class="bg-slate-950 border-t border-slate-900 pt-16 pb-8 text-slate-400 text-xs light:bg-slate-100">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+            <!-- Brand Information -->
+            <div class="space-y-4">
+                <div class="flex-shrink-0 cursor-pointer" onclick="navigateTo('home')">
+                    <span class="font-cinzel text-xl font-black tracking-[0.2em] bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500 bg-clip-text text-transparent">
+                        HANAN
+                    </span>
+                    <span class="block font-inter text-[7px] tracking-[0.45em] text-amber-500 font-bold -mt-1">STORE</span>
+                </div>
+                <p class="text-slate-500 text-[11px] leading-relaxed">
+                    Designed for individuals who demand uncompromising craft and elegance. Experience objects worth every Rupee.
+                </p>
+                <!-- Social accounts details -->
+                <div class="flex gap-4">
+                    <a href="#" class="w-8 h-8 rounded-full border border-slate-800 hover:border-amber-500 text-slate-400 hover:text-amber-500 flex items-center justify-center transition-all"><i class="fa-brands fa-instagram text-xs"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full border border-slate-800 hover:border-amber-500 text-slate-400 hover:text-amber-500 flex items-center justify-center transition-all"><i class="fa-brands fa-pinterest-p text-xs"></i></a>
+                    <a href="#" class="w-8 h-8 rounded-full border border-slate-800 hover:border-amber-500 text-slate-400 hover:text-amber-500 flex items-center justify-center transition-all"><i class="fa-brands fa-x-twitter text-xs"></i></a>
+                </div>
+            </div>
+
+            <!-- Quick Site Map -->
+            <div class="space-y-3">
+                <h4 class="font-cinzel text-white text-xs font-bold tracking-widest uppercase">Navigation</h4>
+                <ul class="space-y-2">
+                    <li><button onclick="navigateTo('home')" class="hover:text-amber-500 transition-colors">Home Page</button></li>
+                    <li><button onclick="navigateTo('shop')" class="hover:text-amber-500 transition-colors">Catalog Shop</button></li>
+                    <li><button onclick="navigateTo('deals')" class="hover:text-amber-500 transition-colors">Exclusive Deals</button></li>
+                    <li><button onclick="navigateTo('about')" class="hover:text-amber-500 transition-colors">Our Story</button></li>
+                </ul>
+            </div>
+
+            <!-- Shop Categories Map -->
+            <div class="space-y-3">
+                <h4 class="font-cinzel text-white text-xs font-bold tracking-widest uppercase">Categories</h4>
+                <ul class="space-y-2">
+                    <li><button onclick="selectCategory('Accessories')" class="hover:text-amber-500 transition-colors">Bespoke Accessories</button></li>
+                    <li><button onclick="selectCategory('Electronics')" class="hover:text-amber-500 transition-colors">Signature Electronics</button></li>
+                    <li><button onclick="selectCategory('Beauty')" class="hover:text-amber-500 transition-colors">Imperial Scents</button></li>
+                    <li><button onclick="selectCategory('Fashion')" class="hover:text-amber-500 transition-colors">Haute Couture Bags</button></li>
+                </ul>
+            </div>
+
+            <!-- Support / Trust -->
+            <div class="space-y-3">
+                <h4 class="font-cinzel text-white text-xs font-bold tracking-widest uppercase">Luxury Trust</h4>
+                <p class="text-slate-500 text-[11px] leading-relaxed">
+                    Enjoy reliable tracking inside Pakistan, safe duty delivery, and a robust premium warranty matching luxury boutique standards.
+                </p>
+                <div class="flex items-center gap-2 text-[10px] text-amber-500 font-extrabold uppercase tracking-wider">
+                    <i class="fa-solid fa-shield-halved text-xs"></i> Secure SSL System
+                </div>
+            </div>
+        </div>
+
+        <!-- Trademark details -->
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 border-t border-slate-900 pt-6 flex flex-col sm:flex-row justify-between items-center gap-4 text-slate-500 text-[11px]">
+            <p>&copy; 2026 Hanan Store. Worth Every Rupee. All Rights Reserved.</p>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-amber-500 transition-all">Privacy Code</a>
+                <a href="#" class="hover:text-amber-500 transition-all">Purchase Policy</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to top floating tracker button -->
+    <button onclick="scrollToTop()" id="back-to-top" class="fixed bottom-6 left-6 z-45 w-10 h-10 rounded-full border border-amber-500/20 glass-panel shadow-gold-glow text-amber-500 items-center justify-center transition-all opacity-0 hidden">
+        <i class="fa-solid fa-arrow-up"></i>
+    </button>
+
+
+    <script>
+        /* MOCK PRODUCT DATABASE WITH MULTIPLE IMAGES PER PRODUCT */
+        const PRODUCTS_DB = [
+            {
+                id: 1,
+                title: "Aurelia Gold Chronograph",
+                category: "Accessories",
+                price: 35000, 
+                rating: 4.9,
+                discount: 0,
+                images: [
+                    "https://images.unsplash.com/photo-1523275335684-37898b6baf30?auto=format&fit=crop&w=600&q=80", // Angle 1
+                    "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=600&q=80", // Angle 2
+                    "https://images.unsplash.com/photo-1547996160-81dfa63595aa?auto=format&fit=crop&w=600&q=80"  // Angle 3
+                ],
+                isBestSeller: true,
+                isFlashSale: true,
+                desc: "An heirloom caliber chronograph crafted of hand-molded 18-karat gold plating with customized Swiss movements.",
+                specs: {
+                    movement: "Swiss Chronometer Quartz",
+                    materials: "Solid Stainless Steel Base & 18K Yellow Gold",
+                    resistance: "50-Meter Luxury Water Shield"
+                }
+            },
+            {
+                id: 2,
+                title: "Aetheris ANC Headphones",
+                category: "Electronics",
+                price: 126000,
+                rating: 4.8,
+                discount: 0,
+                images: [
+                    "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1484704849700-f032a568e944?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1583394838336-acd977736f90?auto=format&fit=crop&w=600&q=80"
+                ],
+                isBestSeller: true,
+                isFlashSale: false,
+                desc: "Wireless sonic isolation encased within high-quality leather ear pads with customized audio tuning.",
+                specs: {
+                    connectivity: "Signature ultra-low latency wireless",
+                    battery: "Up to 48 Hours with Safe Charge",
+                    drivers: "Customized 40mm Beryllium diaphragms"
+                }
+            },
+            {
+                id: 3,
+                title: "Oud Royale Imperial",
+                category: "Beauty",
+                price: 78400,
+                rating: 4.7,
+                discount: 10,
+                images: [
+                    "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1523293182086-7651a899d37f?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1594035910387-fea47794261f?auto=format&fit=crop&w=600&q=80"
+                ],
+                isBestSeller: false,
+                isFlashSale: true,
+                desc: "Pure extract luxury cologne utilizing century-old aged wood from deep agarwood trees.",
+                specs: {
+                    notes: "Top notes of Saffron, heart of Oud oil, dry down of precious Musk",
+                    concentration: "Parfum Extract Extraordinaire",
+                    sillage: "Extravagant 12-Hour Radiance Aura"
+                }
+            },
+            {
+                id: 4,
+                title: "ASUS TUF Z590 Motherboard",
+                category: "Gadgets",
+                price: 40200,
+                rating: 4.9,
+                discount: 0,
+                images: [
+                    "https://images.unsplash.com/photo-1722888595120-2727377cd209?q=80&w=774&auto=format&fit=crop",
+                    "https://images.unsplash.com/photo-1705495013102-14d7248934f6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTR8fGFzdXMlMjB0dWYlMjB6NTkwJTIwcGx1cyUyMHdpZml8ZW58MHx8MHx8fDA%3D",
+                    "https://images.unsplash.com/photo-1742477012583-804ba592b2c8?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                ],
+                isBestSeller: true,
+                isFlashSale: false,
+                desc: "High-performance motherboard designed for gaming and professional workloads, featuring robust power delivery and advanced cooling solutions.",
+                specs: {
+                     chipset: "Intel Z590 with PCIe 4.0 Support",
+                     memory: "Supports DDR4 5333MHz+ (OC) up to 128GB",
+                     connectivity: "Wi-Fi 6E, Bluetooth 5.2, Dual M.2 Slots"
+                }
+            },
+            {
+                id: 5,
+                title: "L'Etoile Suede Handbag",
+                category: "Fashion",
+                price: 249200,
+                rating: 4.6,
+                discount: 20,
+                images: [
+                    "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1566150905458-1bf1fc15aae9?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=600&q=80"
+                ],
+                isBestSeller: false,
+                isFlashSale: true,
+                desc: "An elegant clutch crafted with precision suede stitching and detailed leather trims.",
+                specs: {
+                    leather: "Hand-curated Italian Calf Suede Leather",
+                    trims: "Gold-coated non-corrosive alloy lock components",
+                    lining: "Bespoke Premium Silk Lining"
+                }
+            },
+            {
+                id: 6,
+                title: "Amphora Calfskin Boots",
+                category: "Footwear",
+                price: 173600,
+                rating: 4.8,
+                discount: 0,
+                images: [
+                    "https://images.unsplash.com/photo-1520639888713-7851133b1ed0?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1533867617858-e7b97e060509?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=600&q=80"
+                ],
+                isBestSeller: true,
+                isFlashSale: false,
+                desc: "A timeless boot meticulously crafted for unparalleled comfort and weather resilience.",
+                specs: {
+                    construction: "Full Goodyear Welt construction",
+                    sole: "Custom Orthopedic Leather Outsole Block",
+                    tanning: "Natural vegetable dye wash"
+                }
+            },
+            {
+                id: 7,
+                title: "Helios Aviator Sunglasses",
+                category: "Accessories",
+                price: 89600,
+                rating: 4.5,
+                discount: 10,
+                images: [
+                    "https://images.unsplash.com/photo-1511499767150-a48a237f0083?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1572635196237-14b3f281503f?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1577803645773-f96470509666?auto=format&fit=crop&w=600&q=80"
+                ],
+                isBestSeller: false,
+                isFlashSale: true,
+                desc: "Titanium framed shades providing full light protection with zero color distortion.",
+                specs: {
+                    lenses: "Premium Japanese Polarized Lenses",
+                    weight: "Ultralight Weight (18 grams total)",
+                    uv: "Certified UV400 Protect Guarantee"
+                }
+            },
+            {
+                id: 8,
+                title: "Chronos Brass Lamp",
+                category: "Home & Living",
+                price: 54600,
+                rating: 4.6,
+                discount: 0,
+                images: [
+                    "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1513506003901-1e6a229e2d15?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1517999144091-3d9dca6d1e43?auto=format&fit=crop&w=600&q=80"
+                ],
+                isBestSeller: false,
+                isFlashSale: false,
+                desc: "Minimalist accent desk illumination sculpted with natural sandblasted brass columns.",
+                specs: {
+                    lumens: "Dimmer adjustable range up to 800 Lumens",
+                    material: "Forged Heavy Cast Brass",
+                    source: "Low Energy Warming LED Bulb"
+                }
+            },
+            {
+                id: 9,
+                title: "Imperial Onyx Ring",
+                category: "Accessories",
+                price: 61000,
+                rating: 4.8,
+                discount: 0,
+                images: [
+                    "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=600&q=80"
+                ],
+                isBestSeller: false,
+                isFlashSale: false,
+                desc: "Deep polished black Onyx stone set inside heavy platinum bezel housing.",
+                specs: {
+                    metal: "Solid Premium Platinum Bezel Frame",
+                    stone: "Siberian hand-polished Onyx",
+                    setting: "Custom secure multi-prong architecture"
+                }
+            },
+            {
+                id: 10,
+                title: "COOLERPLUS M450 WIRED GAMING KEYBOARD",
+                category: "Gadgets",
+                price: 4000,
+                rating: 4.8,
+                discount: 0,
+                images: [
+                    "https://img.drz.lazcdn.com/static/pk/p/b26046564822235e3e5e0101fa54c11f.jpg_720x720q80.jpg",
+                    "https://img.drz.lazcdn.com/g/kf/Sb44a6a5dc8004c049ac886307e9161efm.jpg_960x960q80.jpg_.webp",
+                    "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnld5dhtWn9NI0ctUVCEroNovIbdtytr84gRTBFqx4Dw&s"
+                ],
+                isBestSeller: false,
+                isFlashSale: false,
+                desc: "Experience superior typing performance with this wired gaming keyboard.",
+                specs: {
+                    Mechanical : "Fast, tactile, and durable keys for smooth gaming",
+                    ARGB : "Colorful RGB lighting with multiple effects",
+                    AntiGhosting : "Accurately registers multiple key presses at once"
+                }
+            },
+            {
+                id: 11,
+                title: "Imperial Onyx Ring",
+                category: "Gadgets",
+                price: 61000,
+                rating: 4.8,
+                discount: 0,
+                images: [
+                    "https://images.unsplash.com/photo-1605100804763-247f67b3557e?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1535632066927-ab7c9ab60908?auto=format&fit=crop&w=600&q=80",
+                    "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=600&q=80"
+                ],
+                isBestSeller: false,
+                isFlashSale: false,
+                desc: "Deep polished black Onyx stone set inside heavy platinum bezel housing.",
+                specs: {
+                    metal: "Solid Premium Platinum Bezel Frame",
+                    stone: "Siberian hand-polished Onyx",
+                    setting: "Custom secure multi-prong architecture"
+                }
+            },
+            {
+                id: 12,
+                title: "PRISM 4K Action Camera",
+                category: "Gadgets",
+                price: 61000,
+                rating: 4.8,
+                discount: 0,
+                images: [
+                    "",
+                    "",
+                    ""
+                ],
+                isBestSeller: false,
+                isFlashSale: false,
+                desc: "Capture stunning 4K videos with this compact action camera.",
+                specs: {
+                    resolution: "4K at 30fps",
+                    sensor: "1/2.3\" CMOS",
+                    zoom: "Digital 4x"
+                }
+            }
+        ];
+
+        /* CATEGORIES DATABASE MODEL */
+        const CATEGORIES_DB = [
+            { name: "Accessories", icon: "fa-gem", count: 3, bg: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=300&q=80" },
+            { name: "Electronics", icon: "fa-headphones-simple", count: 1, bg: "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?auto=format&fit=crop&w=300&q=80" },
+            { name: "Beauty", icon: "fa-spa", count: 1, bg: "https://images.unsplash.com/photo-1541643600914-78b084683601?auto=format&fit=crop&w=300&q=80" },
+            { name: "Fashion", icon: "fa-shirt", count: 2, bg: "https://images.unsplash.com/photo-1584917865442-de89df76afd3?auto=format&fit=crop&w=300&q=80" },
+            { name: "Footwear", icon: "fa-shoe-prints", count: 1, bg: "https://images.unsplash.com/photo-1520639888713-7851133b1ed0?auto=format&fit=crop&w=300&q=80" },
+            { name: "Home & Living", icon: "fa-couch", count: 1, bg: "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=300&q=80" },
+            { name: "Gadgets", icon: "fa-microchip", count: 4, bg: "https://images.unsplash.com/photo-1722888595120-2727377cd209?q=80&w=774&auto=format&fit=crop" },
+            { name: "Luxury Collection", icon: "fa-crown", count: 13, bg: "https://images.unsplash.com/photo-1524592094714-0f0654e20314?auto=format&fit=crop&w=300&q=80" }
+        ];
+
+        /* CUSTOMER TESTIMONIALS LIST */
+        const REVIEWS_DB = [
+            { text: "Hanan Store is exceptional. My Aurelia Chronograph arrived via secure express courier with custom luxury certificate sheets. Worth every Rupee.", author: "Lord Alistair Sterling", role: "Connoisseur & Collector" },
+            { text: "The noise cancellation technology inside their signature Aetheris headphones is stellar. A luxurious aesthetic combined with supreme performance.", author: "Dr. Elena Rostova", role: "Acoustics Specialist" },
+            { text: "Impeccable calf suede craftsmanship. Finding luxury design houses that value structural details is rare. Highly recommended experience.", author: "Monsieur Charles Dupont", role: "Vogue Designer" }
+        ];
+
+        let state = {
+            cart: JSON.parse(localStorage.getItem('hanan_cart')) || [],
+            wishlist: JSON.parse(localStorage.getItem('hanan_wishlist')) || [],
+            user: JSON.parse(localStorage.getItem('hanan_user')) || null,
+            activePage: 'home',
+            filters: {
+                category: null,
+                price: 500000,
+                rating: 0
+            },
+            sort: 'featured',
+            promoCode: null,
+            reviewsIndex: 0,
+            activeDetailImageIndex: 0,
+            zoomStyle: { display: 'none', backgroundPosition: '0% 0%' }
+        };
+
+        // Custom Helper to Format numbers into clean premium Pakistani Rupees
+        function formatPKR(val) {
+            return 'PKR ' + Math.round(val).toLocaleString('en-PK');
+        }
+
+        /* CLIENT SIDE SPA ROUTING CONTROLLER */
+        function navigateTo(pageId) {
+            document.getElementById('mobile-menu').classList.add('hidden');
+            
+            document.querySelectorAll('.page-view').forEach(view => {
+                view.classList.add('hidden');
+            });
+            
+            const activeSection = document.getElementById(`page-${pageId}`);
+            if (activeSection) {
+                activeSection.classList.remove('hidden');
+                activeSection.classList.add('page-transition');
+            }
+            
+            state.activePage = pageId;
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (pageId === 'shop') {
+                renderShopPage();
+            } else if (pageId === 'cart') {
+                renderCartPage();
+            } else if (pageId === 'wishlist') {
+                renderWishlistPage();
+            } else if (pageId === 'deals') {
+                renderDealsPage();
+            } else if (pageId === 'checkout') {
+                renderCheckoutPage();
+            } else if (pageId === 'account') {
+                renderAccountPage();
+            }
+
+            updateNavHighlights(pageId);
+        }
+
+        function updateNavHighlights(pageId) {
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('text-amber-500');
+            });
+            const navButtons = document.querySelectorAll('.nav-link');
+            navButtons.forEach(btn => {
+                if (btn.innerText.toLowerCase() === pageId) {
+                    btn.classList.add('text-amber-500');
+                }
+            });
+        }
+
+        /* GENERAL UI RENDER HELPER */
+        function createProductCard(product, context = 'default') {
+            const hasDiscount = product.discount > 0;
+            const finalPrice = hasDiscount ? Math.round(product.price * (1 - product.discount / 100)) : product.price;
+            const isBookmarked = state.wishlist.some(item => item.id === product.id);
+            // Default to primary index image
+            const primaryImage = product.images && product.images.length > 0 ? product.images[0] : 'https://placehold.co/600x600/1e293b/d4af37?text=Luxury+Item';
+
+            return `
+                <div class="glass-panel group rounded-3xl overflow-hidden border border-slate-800/80 hover:border-amber-500/30 shadow-[0_4px_25px_rgba(0,0,0,0.2)] hover:shadow-gold-glow transition-all duration-500 flex flex-col h-full relative">
+                    <!-- Badges -->
+                    <div class="absolute top-4 left-4 z-10 flex flex-col gap-2">
+                        ${hasDiscount ? `<span class="px-2 py-0.5 rounded-full bg-rose-500 text-[9px] text-white font-black tracking-widest uppercase">-${product.discount}% OFF</span>` : ''}
+                        ${product.isBestSeller ? `<span class="px-2 py-0.5 rounded-full bg-amber-500 text-[9px] text-slate-950 font-black tracking-widest uppercase">BEST SELLER</span>` : ''}
+                    </div>
+
+                    <!-- Heart trigger -->
+                    <button onclick="toggleWishlist(${product.id})" class="absolute top-4 right-4 z-10 p-2.5 rounded-full bg-slate-950/40 hover:bg-slate-950 text-slate-300 hover:text-rose-500 transition-all shadow-md">
+                        <i class="${isBookmarked ? 'fa-solid' : 'fa-regular'} fa-heart text-xs"></i>
+                    </button>
+
+                    <!-- Image container -->
+                    <div class="relative overflow-hidden aspect-square cursor-pointer" onclick="viewProductDetails(${product.id})">
+                        <img src="${primaryImage}" alt="${product.title}" onerror="this.src='https://placehold.co/600x600/1e293b/d4af37?text=Luxury+Item'" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                        <!-- Quick overlay on mouse hovers -->
+                        <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-opacity duration-300">
+                            <span class="px-5 py-2.5 bg-white text-slate-950 text-[10px] tracking-widest uppercase font-black rounded-full shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-all duration-300">Quick View</span>
+                        </div>
+                    </div>
+
+                    <!-- Description -->
+                    <div class="p-5 flex flex-col flex-grow justify-between space-y-4">
+                        <div>
+                            <span class="text-[9px] text-amber-500 uppercase tracking-widest font-extrabold">${product.category}</span>
+                            <h4 class="font-cinzel text-sm font-bold text-white mt-1 group-hover:text-amber-400 transition-colors line-clamp-1 cursor-pointer" onclick="viewProductDetails(${product.id})">
+                                ${product.title}
+                            </h4>
+                            <div class="flex items-center gap-1.5 mt-2">
+                                <div class="flex text-amber-400 text-[10px]">
+                                    <i class="fa-solid fa-star"></i>
+                                    <span class="ml-1 text-xs text-slate-300 font-bold">${product.rating}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="flex items-center justify-between pt-3 border-t border-slate-800/60">
+                            <div class="flex flex-col">
+                                ${hasDiscount ? `<span class="text-[10px] text-slate-500 line-through">${formatPKR(product.price)}</span>` : ''}
+                                <span class="text-xs sm:text-sm font-black text-amber-500">${formatPKR(finalPrice)}</span>
+                            </div>
+                            <button onclick="addToCart(${product.id})" class="p-2.5 rounded-full bg-amber-500/10 hover:bg-amber-500 text-amber-500 hover:text-slate-950 transition-all flex items-center justify-center" title="Add to Bag">
+                                <i class="fa-solid fa-bag-shopping text-xs"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        /* TOAST ALERT SYSTEM */
+        function triggerToast(message, type = 'success') {
+            const container = document.getElementById('toast-container');
+            const toast = document.createElement('div');
+            
+            let typeColor = 'border-emerald-500/30 text-emerald-400 bg-emerald-950/90';
+            let icon = 'fa-circle-check';
+            if (type === 'error') {
+                typeColor = 'border-rose-500/30 text-rose-400 bg-rose-950/90';
+                icon = 'fa-circle-exclamation';
+            } else if (type === 'info') {
+                typeColor = 'border-amber-500/30 text-amber-400 bg-slate-900/95';
+                icon = 'fa-circle-info';
+            }
+
+            toast.className = `flex items-center gap-3 px-4 py-3 border rounded-xl shadow-xl backdrop-blur-md pointer-events-auto page-transition ${typeColor}`;
+            toast.innerHTML = `
+                <i class="fa-solid ${icon} text-sm"></i>
+                <span class="text-xs font-bold uppercase tracking-wider">${message}</span>
+            `;
+
+            container.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.classList.add('opacity-0');
+                setTimeout(() => toast.remove(), 400);
+            }, 3000);
+        }
+
+        /* THEME UTILITIES */
+        function toggleTheme() {
+            const root = document.documentElement;
+            const themeIcon = document.getElementById('theme-icon');
+            if (root.classList.contains('dark')) {
+                root.classList.remove('dark');
+                root.classList.add('light');
+                themeIcon.className = 'fa-solid fa-sun text-md';
+                localStorage.setItem('theme', 'light');
+                triggerToast('Activated Soft Sand Light Mode', 'info');
+            } else {
+                root.classList.remove('light');
+                root.classList.add('dark');
+                themeIcon.className = 'fa-solid fa-moon text-md';
+                localStorage.setItem('theme', 'dark');
+                triggerToast('Activated Midnight Dark Mode', 'info');
+            }
+        }
+
+        /* MOBILE MENU DRAWER TOGGLES */
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const icon = document.getElementById('mobile-menu-icon');
+            if (menu.classList.contains('hidden')) {
+                menu.classList.remove('hidden');
+                icon.className = 'fa-solid fa-xmark text-lg';
+            } else {
+                menu.classList.add('hidden');
+                icon.className = 'fa-solid fa-bars text-lg';
+            }
+        }
+
+        /* CART OPERATIONS */
+        function addToCart(productId, qty = 1) {
+            const product = PRODUCTS_DB.find(p => p.id === productId);
+            if (!product) return;
+
+            const finalPrice = product.discount > 0 ? Math.round(product.price * (1 - product.discount / 100)) : product.price;
+            const existing = state.cart.find(item => item.id === productId);
+            const imageToUse = product.images && product.images.length > 0 ? product.images[0] : 'https://placehold.co/600x600/1e293b/d4af37?text=Luxury+Item';
+
+            if (existing) {
+                existing.qty += qty;
+            } else {
+                state.cart.push({
+                    id: product.id,
+                    title: product.title,
+                    price: finalPrice,
+                    image: imageToUse,
+                    category: product.category,
+                    qty: qty
+                });
+            }
+
+            saveCart();
+            updateGlobalBadges();
+            triggerToast(`${product.title} added to Luxury Bag`);
+        }
+
+        function removeCartItem(productId) {
+            state.cart = state.cart.filter(item => item.id !== productId);
+            saveCart();
+            renderCartPage();
+            updateGlobalBadges();
+            triggerToast('Item removed from Bag', 'error');
+        }
+
+        function updateCartQty(productId, amount) {
+            const item = state.cart.find(i => i.id === productId);
+            if (!item) return;
+
+            item.qty += amount;
+            if (item.qty <= 0) {
+                removeCartItem(productId);
+            } else {
+                saveCart();
+                renderCartPage();
+                updateGlobalBadges();
+            }
+        }
+
+        function saveCart() {
+            localStorage.setItem('hanan_cart', JSON.stringify(state.cart));
+        }
+
+        /* WISHLIST OPERATIONS */
+        function toggleWishlist(productId) {
+            const product = PRODUCTS_DB.find(p => p.id === productId);
+            if (!product) return;
+
+            const index = state.wishlist.findIndex(item => item.id === productId);
+            if (index !== -1) {
+                state.wishlist.splice(index, 1);
+                triggerToast(`Removed from Wishlist`, 'info');
+            } else {
+                state.wishlist.push(product);
+                triggerToast(`Saved to Wishlist`, 'success');
+            }
+
+            localStorage.setItem('hanan_wishlist', JSON.stringify(state.wishlist));
+            updateGlobalBadges();
+            
+            if (state.activePage === 'shop') renderShopPage();
+            if (state.activePage === 'wishlist') renderWishlistPage();
+            if (state.activePage === 'home') renderHomeProducts();
+            if (state.activePage === 'deals') renderDealsPage();
+        }
+
+        function updateGlobalBadges() {
+            const cartBadge = document.getElementById('cart-badge');
+            const cartCount = state.cart.reduce((total, item) => total + item.qty, 0);
+            if (cartCount > 0) {
+                cartBadge.innerText = cartCount;
+                cartBadge.classList.remove('hidden');
+            } else {
+                cartBadge.classList.add('hidden');
+            }
+
+            const wishlistBadge = document.getElementById('wishlist-badge');
+            if (state.wishlist.length > 0) {
+                wishlistBadge.innerText = state.wishlist.length;
+                wishlistBadge.classList.remove('hidden');
+            } else {
+                wishlistBadge.classList.add('hidden');
+            }
+        }
+
+        /* SEARCH CONTROLLER */
+        function handleSearchInput(val) {
+            const container = document.getElementById('search-autocomplete');
+            if (!val || val.length < 2) {
+                container.classList.add('hidden');
+                return;
+            }
+
+            const query = val.toLowerCase();
+            const matched = PRODUCTS_DB.filter(p => p.title.toLowerCase().includes(query) || p.category.toLowerCase().includes(query));
+
+            if (matched.length === 0) {
+                container.innerHTML = `<div class="p-3 text-slate-500">No matching items found</div>`;
+            } else {
+                container.innerHTML = matched.map(p => {
+                    const primaryImage = p.images && p.images.length > 0 ? p.images[0] : '';
+                    return `
+                        <div onclick="viewProductDetails(${p.id}); document.getElementById('search-autocomplete').classList.add('hidden');" class="flex items-center gap-3 p-2.5 hover:bg-slate-900/50 cursor-pointer border-b border-slate-800 last:border-0 transition-colors">
+                            <img src="${primaryImage}" class="w-8 h-8 rounded-lg object-cover">
+                            <div>
+                                <span class="block text-xs font-bold text-white line-clamp-1">${p.title}</span>
+                                <span class="text-[9px] text-amber-500 uppercase tracking-widest font-extrabold">${p.category} — ${formatPKR(p.price)}</span>
+                            </div>
+                        </div>
+                    `;
+                }).join('');
+            }
+            container.classList.remove('hidden');
+        }
+
+        document.addEventListener('click', (e) => {
+            const searchBox = document.getElementById('global-search-input');
+            const container = document.getElementById('search-autocomplete');
+            if (e.target !== searchBox && e.target !== container) {
+                container.classList.add('hidden');
+            }
+        });
+
+        /* PROMO CODES */
+        function applyCoupon() {
+            const input = document.getElementById('coupon-input').value.toUpperCase();
+            if (input === 'GOLD20') {
+                state.promoCode = 'GOLD20';
+                triggerToast('20% privilege code applied!', 'success');
+                renderCartPage();
+            } else {
+                triggerToast('Invalid coupon credentials', 'error');
+            }
+        }
+
+        function copyPromoCode(code) {
+            const el = document.createElement('textarea');
+            el.value = code;
+            document.body.appendChild(el);
+            el.select();
+            document.execCommand('copy');
+            document.body.removeChild(el);
+            triggerToast(`Copied code: ${code}`);
+        }
+
+        /* CHECKOUT PROCESS */
+        function renderCheckoutPage() {
+            const summaryContainer = document.getElementById('checkout-order-summary');
+            if (state.cart.length === 0) {
+                summaryContainer.innerHTML = `<div class="p-4 text-center text-xs text-slate-500">Bag is currently empty</div>`;
+                document.getElementById('checkout-grandtotal').innerText = formatPKR(0);
+                return;
+            }
+
+            summaryContainer.innerHTML = state.cart.map(item => `
+                <div class="flex items-center justify-between py-3">
+                    <div>
+                        <span class="block text-xs font-bold text-slate-200 line-clamp-1">${item.title}</span>
+                        <span class="text-[10px] text-slate-500">Qty: ${item.qty}</span>
+                    </div>
+                    <span class="text-xs font-bold text-amber-500">${formatPKR(item.price * item.qty)}</span>
+                </div>
+            `).join('');
+
+            const calc = calculateTotals();
+            document.getElementById('checkout-grandtotal').innerText = formatPKR(calc.total);
+        }
+
+        function handlePlaceOrder(e) {
+            e.preventDefault();
+            if (state.cart.length === 0) {
+                triggerToast('Please load items in your bag first', 'error');
+                return;
+            }
+
+            const calc = calculateTotals();
+            if (state.user) {
+                const userOrders = JSON.parse(localStorage.getItem(`orders_${state.user.email}`)) || [];
+                userOrders.push({
+                    id: Math.floor(Math.random() * 89999) + 10000,
+                    date: new Date().toLocaleDateString(),
+                    total: calc.total,
+                    items: [...state.cart]
+                });
+                localStorage.setItem(`orders_${state.user.email}`, JSON.stringify(userOrders));
+            }
+
+            state.cart = [];
+            saveCart();
+            updateGlobalBadges();
+
+            triggerToast('Order confirmed securely!', 'success');
+            
+            setTimeout(() => {
+                navigateTo(state.user ? 'account' : 'home');
+            }, 1000);
+        }
+
+        /* ACCOUNT & AUTH SYSTEM */
+        let authMode = 'login';
+
+        function toggleAuthMode() {
+            const registerFields = document.getElementById('auth-register-fields');
+            const submitBtn = document.getElementById('auth-submit-btn');
+            const toggleBtn = document.getElementById('auth-toggle-btn');
+            const title = document.getElementById('auth-title');
+            const subtitle = document.getElementById('auth-subtitle');
+
+            if (authMode === 'login') {
+                authMode = 'register';
+                registerFields.classList.remove('hidden');
+                submitBtn.innerText = 'Establish Privilege Account';
+                toggleBtn.innerText = 'Already have credentials? Login Access';
+                title.innerText = 'Register Privilege';
+                subtitle.innerText = 'Create your private buyer account below';
+            } else {
+                authMode = 'login';
+                registerFields.classList.add('hidden');
+                submitBtn.innerText = 'Enter Private Portal';
+                toggleBtn.innerText = "Don't have an account? Register Access";
+                title.innerText = 'Privileged Entry';
+                subtitle.innerText = 'Provide credential keys to enter your account profile';
+            }
+        }
+
+        function handleAuthSubmit(e) {
+            e.preventDefault();
+            const email = document.getElementById('auth-email').value;
+            const password = document.getElementById('auth-password').value;
+            const name = document.getElementById('auth-name').value || 'Honorary Member';
+
+            if (authMode === 'register') {
+                localStorage.setItem(`user_${email}`, JSON.stringify({ email, password, name }));
+                triggerToast('Privilege account established!', 'success');
+                state.user = { email, name };
+                localStorage.setItem('hanan_user', JSON.stringify(state.user));
+            } else {
+                const savedUser = JSON.parse(localStorage.getItem(`user_${email}`));
+                if (savedUser && savedUser.password === password) {
+                    state.user = { email, name: savedUser.name };
+                    localStorage.setItem('hanan_user', JSON.stringify(state.user));
+                    triggerToast(`Welcome back, ${savedUser.name}`);
+                } else {
+                    triggerToast('Credential verification failed', 'error');
+                    return;
+                }
+            }
+            renderAccountPage();
+        }
+
+        function handleLogout() {
+            state.user = null;
+            localStorage.removeItem('hanan_user');
+            triggerToast('Account logged out successfully');
+            renderAccountPage();
+        }
+
+        function renderAccountPage() {
+            const authSection = document.getElementById('auth-section');
+            const dashSection = document.getElementById('dashboard-section');
+
+            if (state.user) {
+                authSection.classList.add('hidden');
+                dashSection.classList.remove('hidden');
+                document.getElementById('user-display-name').innerText = state.user.name;
+                document.getElementById('setting-name').value = state.user.name;
+                renderOrderLedger();
+            } else {
+                authSection.classList.remove('hidden');
+                dashSection.classList.add('hidden');
+            }
+        }
+
+        function renderOrderLedger() {
+            const container = document.getElementById('orders-ledger-container');
+            const userOrders = JSON.parse(localStorage.getItem(`orders_${state.user.email}`)) || [];
+
+            if (userOrders.length === 0) {
+                container.innerHTML = `
+                    <div class="text-center py-12 text-slate-500">
+                        <i class="fa-solid fa-folder-open text-3xl mb-3 block"></i>
+                        <span class="text-xs uppercase tracking-wider font-bold">No registered purchases on record</span>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = userOrders.map(order => `
+                <div class="p-4 border border-slate-800 rounded-xl space-y-3">
+                    <div class="flex justify-between items-center border-b border-slate-800 pb-2">
+                        <div>
+                            <span class="block text-xs font-bold text-white">Order Reference: #${order.id}</span>
+                            <span class="text-[10px] text-slate-400">Date: ${order.date}</span>
+                        </div>
+                        <span class="text-xs font-bold text-amber-500">Paid: ${formatPKR(order.total)}</span>
+                    </div>
+                    <div class="space-y-1.5">
+                        ${order.items.map(item => `
+                            <div class="flex justify-between items-center text-[11px] text-slate-300">
+                                <span>${item.title} (x${item.qty})</span>
+                                <span>${formatPKR(item.price * item.qty)}</span>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function switchDashboardTab(tabId) {
+            document.querySelectorAll('.dash-tab-view').forEach(view => view.classList.add('hidden'));
+            document.getElementById(`dash-tab-${tabId}`).classList.remove('hidden');
+
+            const btns = document.querySelectorAll('.dashboard-tab-btn');
+            btns.forEach(btn => {
+                btn.className = 'dashboard-tab-btn text-left px-4 py-3 rounded-xl text-slate-300 hover:bg-slate-900/40';
+                if (btn.innerText.toLowerCase().includes(tabId)) {
+                    btn.className = 'dashboard-tab-btn text-left px-4 py-3 rounded-xl bg-amber-500/10 text-amber-500 font-bold tracking-wider';
+                }
+            });
+        }
+
+        function updateDashboardSettings(event) {
+            event.preventDefault();
+            const newName = document.getElementById('setting-name').value;
+            if (newName && state.user) {
+                state.user.name = newName;
+                localStorage.setItem('hanan_user', JSON.stringify(state.user));
+                
+                const savedUser = JSON.parse(localStorage.getItem(`user_${state.user.email}`));
+                if (savedUser) {
+                    savedUser.name = newName;
+                    localStorage.setItem(`user_${state.user.email}`, JSON.stringify(savedUser));
+                }
+
+                document.getElementById('user-display-name').innerText = newName;
+                triggerToast('Credentials updated successfully', 'success');
+            }
+        }
+
+        /* SHOPPAGE CORE CONTROLLER */
+        function renderShopPage() {
+            const categoryFilterContainer = document.getElementById('filter-categories-list');
+            categoryFilterContainer.innerHTML = `
+                <label class="flex items-center gap-2 cursor-pointer text-xs text-slate-300 hover:text-amber-500">
+                    <input type="radio" name="category-filter" value="" ${state.filters.category === null ? 'checked' : ''} onchange="selectCategory(null)" class="accent-amber-500">
+                    <span>All Luxury Items</span>
+                </label>
+                ${CATEGORIES_DB.filter(c => c.name !== "Luxury Collection").map(c => `
+                    <label class="flex items-center gap-2 cursor-pointer text-xs text-slate-300 hover:text-amber-500">
+                        <input type="radio" name="category-filter" value="${c.name}" ${state.filters.category === c.name ? 'checked' : ''} onchange="selectCategory('${c.name}')" class="accent-amber-500">
+                        <span>${c.name} (${c.count})</span>
+                    </label>
+                `).join('')}
+            `;
+
+            let filtered = PRODUCTS_DB.filter(p => {
+                const matchCategory = state.filters.category ? p.category === state.filters.category : true;
+                const matchPrice = p.price <= state.filters.price;
+                const matchRating = p.rating >= state.filters.rating;
+                return matchCategory && matchPrice && matchRating;
+            });
+
+            if (state.sort === 'price-asc') {
+                filtered.sort((a,b) => a.price - b.price);
+            } else if (state.sort === 'price-desc') {
+                filtered.sort((a,b) => b.price - a.price);
+            } else if (state.sort === 'rating') {
+                filtered.sort((a,b) => b.rating - a.rating);
+            }
+
+            const grid = document.getElementById('shop-products-grid');
+            document.getElementById('shop-results-count').innerText = `Showing ${filtered.length} luxury goods`;
+
+            if (filtered.length === 0) {
+                grid.innerHTML = `
+                    <div class="col-span-full text-center py-20 text-slate-500">
+                        <i class="fa-solid fa-box-open text-4xl mb-4 block"></i>
+                        <span class="text-xs uppercase tracking-widest font-bold block">No Matching luxury artifacts found</span>
+                    </div>
+                `;
+            } else {
+                grid.innerHTML = filtered.map(p => createProductCard(p, 'shop')).join('');
+            }
+        }
+
+        function selectCategory(cat) {
+            state.filters.category = cat;
+            renderShopPage();
+        }
+
+        function updatePriceFilter(price) {
+            state.filters.price = parseInt(price);
+            document.getElementById('price-slider-display').innerText = formatPKR(price);
+            renderShopPage();
+        }
+
+        function updateRatingFilter(rating) {
+            state.filters.rating = parseFloat(rating);
+            renderShopPage();
+        }
+
+        function updateSorting(sortVal) {
+            state.sort = sortVal;
+            renderShopPage();
+        }
+
+        function clearAllFilters() {
+            state.filters.category = null;
+            state.filters.price = 500000;
+            state.filters.rating = 0;
+            
+            document.getElementById('price-slider-input').value = 500000;
+            document.getElementById('price-slider-display').innerText = formatPKR(500000);
+            const allRatingsRadio = document.querySelector('input[name="rating-filter"][value="0"]');
+            if (allRatingsRadio) allRatingsRadio.checked = true;
+
+            renderShopPage();
+        }
+
+        /* SINGLE DETAILED VIEW MODAL GATES */
+        function viewProductDetails(productId) {
+            const product = PRODUCTS_DB.find(p => p.id === productId);
+            if (!product) return;
+
+            // Reset active image pointer
+            state.activeDetailImageIndex = 0;
+            navigateTo('product-details');
+            renderProductDetailsContent(product);
+        }
+
+        function renderProductDetailsContent(product) {
+            const container = document.getElementById('product-detail-layout');
+            const hasDiscount = product.discount > 0;
+            const finalPrice = hasDiscount ? Math.round(product.price * (1 - product.discount / 100)) : product.price;
+
+            // Generate premium thumbnail buttons
+            const thumbnailHTML = product.images.map((img, index) => `
+                <div onclick="swapDetailImageIndex(${product.id}, ${index})" 
+                     class="aspect-square rounded-xl overflow-hidden border-2 cursor-pointer transition-all duration-300 ${
+                         state.activeDetailImageIndex === index 
+                         ? 'border-amber-500 shadow-gold-glow scale-105' 
+                         : 'border-slate-800 hover:border-amber-500/50'
+                     }">
+                    <img src="${img}" class="w-full h-full object-cover">
+                </div>
+            `).join('');
+
+            container.innerHTML = `
+                <!-- Left Column: Premium Interactive Multi-Image Showcase with Loupe Hover Zoom -->
+                <div class="space-y-4">
+                    <!-- Main image stage with Next/Prev Carousel Controls and Zoom Canvas overlay -->
+                    <div class="relative aspect-square rounded-3xl overflow-hidden border border-slate-800/80 bg-slate-900/10 group">
+                        
+                        <!-- Dynamic loupe coordinate canvas -->
+                        <div id="loupe-zoom-layer" 
+                             class="absolute inset-0 pointer-events-none transition-opacity duration-300 rounded-3xl z-20 border border-amber-500/30" 
+                             style="display: none;"></div>
+
+                        <img id="primary-detail-img" 
+                             src="${product.images[state.activeDetailImageIndex]}" 
+                             onmousemove="handleDetailMouseMove(event, '${product.images[state.activeDetailImageIndex]}')" 
+                             onmouseleave="handleDetailMouseLeave()" 
+                             class="w-full h-full object-cover cursor-zoom-in transition-transform duration-300 ease-out">
+
+                        <!-- Carousel Prev Button -->
+                        <button onclick="slideDetailImage(${product.id}, -1)" 
+                                class="absolute left-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-slate-950/80 border border-slate-800 hover:border-amber-500 text-slate-300 hover:text-amber-500 flex items-center justify-center backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all focus:opacity-100">
+                            <i class="fa-solid fa-chevron-left text-sm"></i>
+                        </button>
+
+                        <!-- Carousel Next Button -->
+                        <button onclick="slideDetailImage(${product.id}, 1)" 
+                                class="absolute right-4 top-1/2 -translate-y-1/2 z-30 w-10 h-10 rounded-full bg-slate-950/80 border border-slate-800 hover:border-amber-500 text-slate-300 hover:text-amber-500 flex items-center justify-center backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-all focus:opacity-100">
+                            <i class="fa-solid fa-chevron-right text-sm"></i>
+                        </button>
+
+                        <!-- Counter Bubble -->
+                        <div class="absolute top-4 right-4 bg-slate-950/80 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-black border border-slate-800 text-slate-300 z-30">
+                            ${state.activeDetailImageIndex + 1} / ${product.images.length}
+                        </div>
+
+                        <!-- Hover Visual Tip -->
+                        <div class="absolute bottom-4 left-4 bg-slate-950/60 backdrop-blur-sm px-3 py-1 rounded-lg text-[10px] text-slate-300 border border-slate-800/80 pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity z-30">
+                            ✦ Hover to zoom details
+                        </div>
+                    </div>
+
+                    <!-- Horizontally Scrollable Gallery strip -->
+                    <div class="grid grid-cols-4 gap-4">
+                        ${thumbnailHTML}
+                    </div>
+                </div>
+
+                <!-- Right Column: Commercial and Privilege Control Panel -->
+                <div class="space-y-6">
+                    <div>
+                        <span class="text-amber-500 text-xs uppercase tracking-widest font-extrabold">${product.category}</span>
+                        <h2 class="font-cinzel text-3xl font-extrabold text-white mt-1">${product.title}</h2>
+                        <div class="flex items-center gap-2 mt-2 text-xs text-amber-400">
+                            <div class="flex">
+                                <i class="fa-solid fa-star"></i>
+                                <span class="ml-1 text-slate-300 font-bold">${product.rating}</span>
+                            </div>
+                            <span class="text-slate-500">|</span>
+                            <span class="text-slate-400">Verified Connoisseur Consensus</span>
+                        </div>
+                    </div>
+
+                    <div class="border-y border-slate-800/80 py-4 flex items-center justify-between">
+                        <div>
+                            ${hasDiscount ? `<span class="text-xs text-slate-500 line-through block">${formatPKR(product.price)}</span>` : ''}
+                            <span class="text-2xl font-black text-amber-500">${formatPKR(finalPrice)}</span>
+                        </div>
+                        <span class="text-xs px-3 py-1 bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 rounded-full font-bold">Premium Reserve In Stock</span>
+                    </div>
+
+                    <p class="text-slate-400 text-xs sm:text-sm leading-relaxed">${product.desc}</p>
+
+                    <!-- Add-to utilities block -->
+                    <div class="flex gap-4 pt-2">
+                        <div class="flex items-center border border-slate-800 rounded-full overflow-hidden bg-slate-900/40">
+                            <button onclick="changeDetailQty(-1)" class="px-3.5 py-2 hover:bg-slate-800 text-slate-300 transition-colors"><i class="fa-solid fa-minus text-xs"></i></button>
+                            <span id="detail-qty-display" class="px-4 font-bold text-xs text-white">1</span>
+                            <button onclick="changeDetailQty(1)" class="px-3.5 py-2 hover:bg-slate-800 text-slate-300 transition-colors"><i class="fa-solid fa-plus text-xs"></i></button>
+                        </div>
+                        <button onclick="triggerDetailAddToCart(${product.id})" class="flex-grow text-center gold-shimmer py-3 bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-950 font-bold tracking-widest uppercase text-xs rounded-full">
+                            Add To Luxury Bag
+                        </button>
+                    </div>
+
+                    <!-- Custom Tab Layout containing Details AND interactive Privilege Asset Manager -->
+                    <div class="pt-6 border-t border-slate-800">
+                        <div class="flex gap-4 border-b border-slate-800 pb-1">
+                            <button onclick="toggleSpecTab('specs')" id="tab-btn-specs" class="text-xs font-bold tracking-wider uppercase text-amber-500 pb-2 border-b-2 border-amber-500 transition-all">Specifications</button>
+                            <button onclick="toggleSpecTab('assets')" id="tab-btn-assets" class="text-xs font-bold tracking-wider uppercase text-slate-400 pb-2 transition-all flex items-center gap-1.5 hover:text-amber-400">
+                                <i class="fa-solid fa-images"></i> Privilege Asset Manager
+                            </button>
+                        </div>
+
+                        <!-- Panel A: Static Specifications -->
+                        <div id="detail-tab-specs" class="text-xs text-slate-400 space-y-2.5 pt-4">
+                            ${Object.entries(product.specs).map(([key, val]) => `
+                                <div class="flex justify-between border-b border-slate-900 pb-2 last:border-0">
+                                    <span class="font-bold text-slate-300 capitalize">${key}</span>
+                                    <span>${val}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+
+                        <!-- Panel B: Dynamic Privilege Asset Manager (REALTIME MULTI-IMAGE CONFIGURE) -->
+                        <div id="detail-tab-assets" class="hidden pt-4 space-y-4">
+                            <span class="block text-[10px] text-slate-400 uppercase tracking-wider font-semibold">Rearrange / Inject Multi-Image assets live:</span>
+                            
+                            <!-- Queue List with Action Arrows -->
+                            <div class="space-y-2 max-h-48 overflow-y-auto pr-1">
+                                ${product.images.map((img, i) => `
+                                    <div class="flex items-center gap-3 bg-slate-900/60 border border-slate-800/80 p-2 rounded-xl justify-between">
+                                        <div class="flex items-center gap-2 min-w-0">
+                                            <img src="${img}" class="w-8 h-8 rounded-lg object-cover border border-slate-700 flex-shrink-0">
+                                            <span class="text-[9px] text-slate-400 font-mono truncate max-w-[120px] sm:max-w-[180px]">${img}</span>
+                                        </div>
+                                        <div class="flex items-center gap-1.5 flex-shrink-0">
+                                            <!-- Promoters -->
+                                            ${i !== 0 ? `
+                                                <button onclick="promoteImage(${product.id}, ${i})" title="Make Cover" class="p-1 px-1.5 rounded bg-slate-950 hover:bg-amber-500 hover:text-slate-950 text-slate-400 text-[9px] transition-colors font-bold uppercase">Cover</button>
+                                            ` : `
+                                                <span class="text-[9px] text-amber-500 font-bold uppercase tracking-wider px-1">Primary</span>
+                                            `}
+                                            
+                                            <!-- Reordering triggers -->
+                                            <button onclick="reorderImage(${product.id}, ${i}, -1)" ${i === 0 ? 'disabled' : ''} class="p-1 bg-slate-950 rounded border border-slate-800 text-slate-400 hover:text-white disabled:opacity-20">
+                                                <i class="fa-solid fa-arrow-up text-[9px]"></i>
+                                            </button>
+                                            <button onclick="reorderImage(${product.id}, ${i}, 1)" ${i === product.images.length - 1 ? 'disabled' : ''} class="p-1 bg-slate-950 rounded border border-slate-800 text-slate-400 hover:text-white disabled:opacity-20">
+                                                <i class="fa-solid fa-arrow-down text-[9px]"></i>
+                                            </button>
+
+                                            <!-- Deleters -->
+                                            <button onclick="deleteImage(${product.id}, ${i})" class="p-1 text-slate-500 hover:text-rose-400">
+                                                <i class="fa-solid fa-trash-can text-[9px]"></i>
+                                            </button>
+                                        </div>
+                                    </div>
+                                `).join('')}
+                            </div>
+
+                            <!-- Image URL Injector -->
+                            <div class="bg-slate-950/80 border border-slate-800 p-3 rounded-2xl space-y-2">
+                                <label class="block text-[9px] text-slate-400 font-bold uppercase tracking-wider">Inject Custom Asset Link:</label>
+                                <div class="flex gap-2">
+                                    <input type="url" id="inject-url-input" placeholder="Paste direct HTTPS image link..." 
+                                           class="flex-1 bg-slate-900 border border-slate-800 text-[10px] text-slate-200 px-3 py-2 rounded-lg focus:outline-none focus:border-amber-500">
+                                    <button onclick="injectImage(${product.id})" class="px-3.5 py-2 bg-amber-500 text-slate-950 text-[10px] font-bold rounded-lg uppercase tracking-wider hover:bg-amber-400 transition-colors">Inject</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        /* HOVER ZOOM CONTROLS */
+        function handleDetailMouseMove(e, src) {
+            const zoomLayer = document.getElementById('loupe-zoom-layer');
+            const { left, top, width, height } = e.target.getBoundingClientRect();
+            
+            // Computes coordinates percentages relative to scale frame boundaries
+            const x = ((e.pageX - left - window.scrollX) / width) * 100;
+            const y = ((e.pageY - top - window.scrollY) / height) * 100;
+
+            zoomLayer.style.display = 'block';
+            zoomLayer.style.backgroundImage = `url(${src})`;
+            zoomLayer.style.backgroundPosition = `${x}% ${y}%`;
+            zoomLayer.style.backgroundSize = '220%'; // Intensified focal depth magnification
+        }
+
+        function handleDetailMouseLeave() {
+            document.getElementById('loupe-zoom-layer').style.display = 'none';
+        }
+
+        /* DYNAMIC SWAPPERS & CAROUSEL TRIGGERS */
+        function swapDetailImageIndex(productId, index) {
+            const product = PRODUCTS_DB.find(p => p.id === productId);
+            if (!product) return;
+
+            state.activeDetailImageIndex = index;
+            renderProductDetailsContent(product);
+        }
+
+        function slideDetailImage(productId, step) {
+            const product = PRODUCTS_DB.find(p => p.id === productId);
+            if (!product) return;
+
+            let nextIndex = state.activeDetailImageIndex + step;
+            if (nextIndex < 0) {
+                nextIndex = product.images.length - 1;
+            } else if (nextIndex >= product.images.length) {
+                nextIndex = 0;
+            }
+
+            state.activeDetailImageIndex = nextIndex;
+            renderProductDetailsContent(product);
+        }
+
+        /* ASSET MANAGER TOGGLES */
+        function toggleSpecTab(tabId) {
+            const specBtn = document.getElementById('tab-btn-specs');
+            const assetBtn = document.getElementById('tab-btn-assets');
+            const specTab = document.getElementById('detail-tab-specs');
+            const assetTab = document.getElementById('detail-tab-assets');
+
+            if (tabId === 'specs') {
+                specBtn.className = 'text-xs font-bold tracking-wider uppercase text-amber-500 pb-2 border-b-2 border-amber-500 transition-all';
+                assetBtn.className = 'text-xs font-bold tracking-wider uppercase text-slate-400 pb-2 transition-all hover:text-amber-400';
+                specTab.classList.remove('hidden');
+                assetTab.classList.add('hidden');
+            } else {
+                assetBtn.className = 'text-xs font-bold tracking-wider uppercase text-amber-500 pb-2 border-b-2 border-amber-500 transition-all';
+                specBtn.className = 'text-xs font-bold tracking-wider uppercase text-slate-400 pb-2 transition-all hover:text-amber-400';
+                assetTab.classList.remove('hidden');
+                specTab.classList.add('hidden');
+            }
+        }
+
+        /* DYNAMIC ASSET ENGINE OPERATIONS */
+        function injectImage(productId) {
+            const input = document.getElementById('inject-url-input');
+            const url = input.value.trim();
+            if (!url) {
+                triggerToast('Please provide a valid link address', 'error');
+                return;
+            }
+            if (!url.startsWith('https://') && !url.startsWith('http://')) {
+                triggerToast('Injected link must start with secure HTTP/HTTPS address keys', 'error');
+                return;
+            }
+
+            const product = PRODUCTS_DB.find(p => p.id === productId);
+            if (product) {
+                product.images.push(url);
+                triggerToast('Asset injected successfully', 'success');
+                renderProductDetailsContent(product);
+            }
+        }
+
+        function deleteImage(productId, index) {
+            const product = PRODUCTS_DB.find(p => p.id === productId);
+            if (product) {
+                if (product.images.length <= 1) {
+                    triggerToast('Cannot remove the lone asset. Keep at least 1 image.', 'error');
+                    return;
+                }
+                product.images.splice(index, 1);
+                
+                // Keep boundary pointer safe
+                if (state.activeDetailImageIndex >= product.images.length) {
+                    state.activeDetailImageIndex = 0;
+                }
+                triggerToast('Asset link deleted from catalogue', 'info');
+                renderProductDetailsContent(product);
+            }
+        }
+
+        function reorderImage(productId, index, offset) {
+            const product = PRODUCTS_DB.find(p => p.id === productId);
+            if (product) {
+                const target = index + offset;
+                if (target < 0 || target >= product.images.length) return;
+
+                const temp = product.images[index];
+                product.images[index] = product.images[target];
+                product.images[target] = temp;
+
+                // Sync pointers
+                if (state.activeDetailImageIndex === index) {
+                    state.activeDetailImageIndex = target;
+                } else if (state.activeDetailImageIndex === target) {
+                    state.activeDetailImageIndex = index;
+                }
+
+                triggerToast('Asset priority reordered', 'success');
+                renderProductDetailsContent(product);
+            }
+        }
+
+        function promoteImage(productId, index) {
+            const product = PRODUCTS_DB.find(p => p.id === productId);
+            if (product) {
+                const [targetImg] = product.images.splice(index, 1);
+                product.images.unshift(targetImg);
+                state.activeDetailImageIndex = 0;
+                triggerToast('Cover promoted to primary position!', 'success');
+                renderProductDetailsContent(product);
+            }
+        }
+
+        let detailQty = 1;
+        function changeDetailQty(amount) {
+            detailQty += amount;
+            if (detailQty < 1) detailQty = 1;
+            document.getElementById('detail-qty-display').innerText = detailQty;
+        }
+
+        function triggerDetailAddToCart(productId) {
+            addToCart(productId, detailQty);
+            detailQty = 1;
+            document.getElementById('detail-qty-display').innerText = 1;
+        }
+
+        /* QUICK VIEW OVERLAYS MODALS */
+        function openQuickView(productId) {
+            const product = PRODUCTS_DB.find(p => p.id === productId);
+            if (!product) return;
+
+            const modal = document.getElementById('quickview-modal');
+            const content = document.getElementById('quickview-modal-content');
+            const finalPrice = product.discount > 0 ? Math.round(product.price * (1 - product.discount / 100)) : product.price;
+            const primaryImage = product.images && product.images.length > 0 ? product.images[0] : '';
+
+            content.innerHTML = `
+                <div class="aspect-square rounded-2xl overflow-hidden border border-slate-800">
+                    <img src="${primaryImage}" class="w-full h-full object-cover">
+                </div>
+                <div class="space-y-4 flex flex-col justify-between">
+                    <div>
+                        <span class="text-[9px] text-amber-500 font-extrabold uppercase tracking-widest">${product.category}</span>
+                        <h3 class="font-cinzel text-xl font-bold text-white mt-1">${product.title}</h3>
+                        <span class="text-lg font-black text-amber-500 block mt-2">${formatPKR(finalPrice)}</span>
+                        <p class="text-xs text-slate-400 mt-3 leading-relaxed">${product.desc}</p>
+                    </div>
+                    <button onclick="addToCart(${product.id}); closeQuickView();" class="w-full text-center gold-shimmer py-3 bg-gradient-to-r from-amber-500 to-yellow-600 text-slate-950 font-bold tracking-widest uppercase text-xs rounded-full">
+                        Add to Luxury Bag
+                    </button>
+                </div>
+            `;
+            modal.classList.remove('hidden');
+        }
+
+        function closeQuickView() {
+            document.getElementById('quickview-modal').classList.add('hidden');
+        }
+
+        /* TESTIMONIALS SLIDER */
+        function renderReviews() {
+            const track = document.getElementById('reviews-slider-track');
+            track.innerHTML = REVIEWS_DB.map(r => `
+                <div class="w-full flex-shrink-0 px-4">
+                    <div class="glass-panel p-8 rounded-3xl border border-slate-800 text-center space-y-4 max-w-2xl mx-auto">
+                        <div class="flex justify-center text-amber-400 gap-1 text-sm">
+                            <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+                        </div>
+                        <p class="font-cinzel text-sm sm:text-base italic text-slate-200 leading-relaxed">"${r.text}"</p>
+                        <div>
+                            <h4 class="font-cinzel text-xs font-bold text-amber-500 tracking-wider">${r.author}</h4>
+                            <span class="text-[9px] text-slate-500 uppercase tracking-widest mt-0.5 block">${r.role}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+            syncReviewsPos();
+        }
+
+        function slideReviews(direction) {
+            state.reviewsIndex += direction;
+            if (state.reviewsIndex < 0) state.reviewsIndex = REVIEWS_DB.length - 1;
+            if (state.reviewsIndex >= REVIEWS_DB.length) state.reviewsIndex = 0;
+            syncReviewsPos();
+        }
+
+        function syncReviewsPos() {
+            const track = document.getElementById('reviews-slider-track');
+            track.style.transform = `translateX(-${state.reviewsIndex * 100}%)`;
+        }
+
+        /* DEALS & OFFERS TIMERS */
+        function renderDealsPage() {
+            const grid = document.getElementById('flash-deals-products-grid');
+            const flashItems = PRODUCTS_DB.filter(p => p.isFlashSale);
+            grid.innerHTML = flashItems.map(p => createProductCard(p, 'deals')).join('');
+        }
+
+        function startCountdown() {
+            setInterval(() => {
+                const now = new Date();
+                const hours = 23 - now.getHours();
+                const minutes = 59 - now.getMinutes();
+                const seconds = 59 - now.getSeconds();
+
+                document.getElementById('timer-hours').innerText = String(hours).padStart(2, '0');
+                document.getElementById('timer-minutes').innerText = String(minutes).padStart(2, '0');
+                document.getElementById('timer-seconds').innerText = String(seconds).padStart(2, '0');
+            }, 1000);
+        }
+
+        /* DETAILED CALCULATIONS */
+        function calculateTotals() {
+            const subtotal = state.cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+            const discount = state.promoCode === 'GOLD20' ? Math.round(subtotal * 0.2) : 0;
+            const tax = subtotal > 0 ? Math.round(subtotal * 0.05) : 0; 
+            const shipping = subtotal > 0 ? 2500 : 0; 
+            const total = subtotal - discount + tax + shipping;
+
+            return {
+                subtotal: subtotal,
+                discount: discount,
+                tax: tax,
+                shipping: shipping,
+                total: total
+            };
+        }
+
+        function renderCartPage() {
+            const container = document.getElementById('cart-items-container');
+            if (state.cart.length === 0) {
+                container.innerHTML = `
+                    <div class="glass-panel p-8 rounded-2xl border border-slate-800 text-center space-y-4">
+                        <i class="fa-solid fa-bag-shopping text-4xl text-slate-600 block mb-2"></i>
+                        <h3 class="font-cinzel text-lg font-bold text-white">Your Bag is Empty</h3>
+                        <p class="text-xs text-slate-400">Add exquisite objects from our collections to initiate checkout processes</p>
+                        <button onclick="navigateTo('shop')" class="inline-block px-6 py-2.5 bg-amber-500 text-slate-950 text-xs font-bold tracking-widest uppercase rounded-full">Go to Shop</button>
+                    </div>
+                `;
+                document.getElementById('cart-subtotal').innerText = formatPKR(0);
+                document.getElementById('cart-tax').innerText = formatPKR(0);
+                document.getElementById('cart-shipping').innerText = formatPKR(0);
+                document.getElementById('cart-grandtotal').innerText = formatPKR(0);
+                document.getElementById('coupon-applied-container').classList.add('hidden');
+                return;
+            }
+
+            container.innerHTML = state.cart.map(item => `
+                <div class="glass-panel p-4 rounded-2xl border border-slate-800 flex gap-4 items-center justify-between">
+                    <div class="flex gap-4 items-center">
+                        <img src="${item.image}" class="w-16 h-16 rounded-xl object-cover border border-slate-800">
+                        <div>
+                            <span class="text-[9px] text-amber-500 uppercase tracking-widest font-extrabold">${item.category}</span>
+                            <h4 class="font-cinzel text-xs sm:text-sm font-bold text-white line-clamp-1">${item.title}</h4>
+                            <span class="text-xs font-bold text-slate-400 block mt-1">${formatPKR(item.price)}</span>
+                        </div>
+                    </div>
+                    
+                    <div class="flex items-center gap-4">
+                        <div class="flex items-center border border-slate-800 rounded-full overflow-hidden bg-slate-900/30">
+                            <button onclick="updateCartQty(${item.id}, -1)" class="px-2.5 py-1 text-slate-400 hover:bg-slate-800"><i class="fa-solid fa-minus text-[10px]"></i></button>
+                            <span class="px-3 text-xs font-bold text-white">${item.qty}</span>
+                            <button onclick="updateCartQty(${item.id}, 1)" class="px-2.5 py-1 text-slate-400 hover:bg-slate-800"><i class="fa-solid fa-plus text-[10px]"></i></button>
+                        </div>
+                        <button onclick="removeCartItem(${item.id})" class="text-slate-500 hover:text-rose-500 transition-colors"><i class="fa-solid fa-trash-can text-sm"></i></button>
+                    </div>
+                </div>
+            `).join('');
+
+            const calc = calculateTotals();
+            document.getElementById('cart-subtotal').innerText = formatPKR(calc.subtotal);
+            document.getElementById('cart-tax').innerText = formatPKR(calc.tax);
+            document.getElementById('cart-shipping').innerText = formatPKR(calc.shipping);
+            document.getElementById('cart-grandtotal').innerText = formatPKR(calc.total);
+
+            if (state.promoCode === 'GOLD20') {
+                document.getElementById('cart-discount').innerText = `-${formatPKR(calc.discount)}`;
+                document.getElementById('coupon-applied-container').classList.remove('hidden');
+            } else {
+                document.getElementById('coupon-applied-container').classList.add('hidden');
+            }
+        }
+
+        /* WISHLIST RENDERING */
+        function renderWishlistPage() {
+            const container = document.getElementById('wishlist-products-grid');
+            if (state.wishlist.length === 0) {
+                container.innerHTML = `
+                    <div class="col-span-full text-center py-20 text-slate-500">
+                        <i class="fa-solid fa-heart-crack text-4xl mb-4 block"></i>
+                        <span class="text-xs uppercase tracking-widest font-bold block">No Saved items inside Wishlist</span>
+                    </div>
+                `;
+                return;
+            }
+
+            container.innerHTML = state.wishlist.map(p => {
+                const primaryImage = p.images && p.images.length > 0 ? p.images[0] : '';
+                return `
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-slate-800 flex flex-col justify-between h-full">
+                        <div class="relative overflow-hidden aspect-square">
+                            <img src="${primaryImage}" class="w-full h-full object-cover">
+                            <button onclick="toggleWishlist(${p.id})" class="absolute top-3 right-3 p-2 rounded-full bg-slate-950/60 text-rose-500 hover:bg-slate-950 transition-all">
+                                <i class="fa-solid fa-heart text-xs"></i>
+                            </button>
+                        </div>
+                        <div class="p-4 space-y-3">
+                            <div>
+                                <span class="text-[9px] text-amber-500 font-extrabold tracking-widest uppercase">${p.category}</span>
+                                <h4 class="font-cinzel text-xs font-bold text-white line-clamp-1 mt-0.5">${p.title}</h4>
+                                <span class="text-xs font-bold text-slate-400 block mt-1">${formatPKR(p.price)}</span>
+                            </div>
+                            <button onclick="addToCart(${p.id}); toggleWishlist(${p.id});" class="w-full text-center py-2 bg-amber-500 text-slate-950 font-bold tracking-widest uppercase text-[10px] rounded-full">
+                                Move to Bag
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+        }
+
+        /* MAIN INDEX POPULATORS */
+        function renderHomeProducts() {
+            const bestSellers = PRODUCTS_DB.filter(p => p.isBestSeller);
+            const container = document.getElementById('best-sellers-container');
+            container.innerHTML = bestSellers.map(p => createProductCard(p)).join('');
+
+            const categoriesGrid = document.getElementById('categories-grid-container');
+            categoriesGrid.innerHTML = CATEGORIES_DB.map(c => `
+                <div onclick="selectCategory('${c.name === 'Luxury Collection' ? '' : c.name}'); navigateTo('shop');" class="relative group h-40 rounded-2xl overflow-hidden border border-slate-800 cursor-pointer shadow-lg transform hover:-translate-y-1 transition-all duration-300">
+                    <img src="${c.bg}" class="absolute inset-0 w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-gradient-to-t from-slate-950/90 via-slate-950/40 to-slate-950/10"></div>
+                    <div class="absolute bottom-4 left-4 right-4 text-center">
+                        <i class="fa-solid ${c.icon} text-amber-500 text-xl mb-1.5 block"></i>
+                        <h4 class="font-cinzel text-xs font-bold text-white tracking-widest uppercase">${c.name}</h4>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        /* NEWSLETTER ACTION DECORATOR */
+        function handleNewsletterSubmit(e) {
+            e.preventDefault();
+            triggerToast('A luxury catalog invitation sent!', 'success');
+            e.target.reset();
+        }
+
+        /* CONTACT FORM AGENT */
+        function handleContactSubmit(e) {
+            e.preventDefault();
+            triggerToast('Concierge message dispatched securely!', 'success');
+            e.target.reset();
+        }
+
+        /* SCROLL UTILITY UTILITIES */
+        function scrollToFeatured() {
+            const el = document.getElementById('featured-collections');
+            el.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        window.addEventListener('scroll', () => {
+            const btn = document.getElementById('back-to-top');
+            const nav = document.getElementById('main-nav');
+            
+            if (window.scrollY > 400) {
+                btn.classList.remove('hidden', 'opacity-0');
+                btn.classList.add('flex', 'opacity-100');
+            } else {
+                btn.classList.remove('opacity-100');
+                btn.classList.add('opacity-0', 'hidden');
+            }
+
+            if (window.scrollY > 80) {
+                nav.classList.add('shadow-xl', 'py-1');
+            } else {
+                nav.classList.remove('shadow-xl', 'py-1');
+            }
+        });
+
+        /* SYSTEM INITIALIZER ON WINDOW LOADED GATES */
+        window.onload = function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.documentElement.classList.remove('dark');
+                document.documentElement.classList.add('light');
+                document.getElementById('theme-icon').className = 'fa-solid fa-sun text-md';
+            } else {
+                document.documentElement.classList.add('dark');
+            }
+
+            renderHomeProducts();
+            renderReviews();
+            startCountdown();
+            updateGlobalBadges();
+            
+            navigateTo('home');
+        };
+    </script>
+</body>
+</html>
